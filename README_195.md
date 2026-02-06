@@ -6,12 +6,12 @@
 
 | Name | GitHub | Email |
 |------|--------|-------|
-| Name 1 | [@username](https://github.com/username) | name@sjsu.edu |
+| Jumana Ayoub | [@jumanaayoub1](https://github.com/jumanaayoub1) | jumana.ayoub@sjsu.edu |
 | Name 2 | [@username](https://github.com/username) | name@sjsu.edu |
 | Name 3 | [@username](https://github.com/username) | name@sjsu.edu |
 | Name 4 | [@username](https://github.com/username) | name@sjsu.edu |
 
-**Advisor:** [Advisor Name]
+**Advisor:** [Jun Liu]
 
 ---
 
