@@ -7,9 +7,9 @@
 | Name | GitHub | Email |
 |------|--------|-------|
 | Jumana Ayoub | [@jumanaayoub1](https://github.com/jumanaayoub1) | jumana.ayoub@sjsu.edu |
-| Name 2 | [@jjpastores](https://github.com/jjpastores) | joshua.pastores@sjsu.edu |
-| Name 3 | [@username](https://github.com/username) | name@sjsu.edu |
-| Name 4 | [@username](https://github.com/username) | name@sjsu.edu |
+| Joshua Pastores | [@jjpastores](https://github.com/jjpastores) | joshua.pastores@sjsu.edu |
+| Toey Lui | [@toeyldev](https://github.com/toeyldev) | toey.lui@sjsu.edu |
+| Bush Nguyen | [@username](https://github.com/username) | name@sjsu.edu |
 
 **Advisor:** [Jun Liu]
 
