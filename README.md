@@ -39,3 +39,6 @@ cd group-project-team-ar
 3. Wait for the lens to load on the Spectacles
 
 If setup is successful, you should see a 3D red panda rendered and moving in your Spectacles view.
+
+### Reference
+[Building Your First Spectacles Lens](https://developers.snap.com/spectacles/get-started/start-building/build-your-first-spectacles-lens-tutorial)
