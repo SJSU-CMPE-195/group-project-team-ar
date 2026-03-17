@@ -5,7 +5,7 @@
 
 ### 1. Install Required Apps
 
-- **Desktop**: Download [Snap AR Lens Studio](https://ar.snap.com/lens-studio-dl?utm_source=GooglePM&utm_medium=PAIDPLATFORM&utm_campaign=LensStudio_PM_P0_RET&utm_term=Retargeting_LS_Downloaders&utm_content=LS_ProductPage&gad_source=1&gad_campaignid=22443428343&gbraid=0AAAAADGpnVFmkQmQPCmCm1PUsAB-FSE3m)
+- **Desktop**: Download [Lens Studio For Spectacles](https://ar.snap.com/spectacles?utm_campaign=LensStudio_PM_P0_RET&utm_content=LS_ProductPage&utm_medium=PAIDPLATFORM&utm_source=GooglePM&utm_term=Retargeting_LS_Downloaders)
 - **Mobile**: Download Spectacles by Snap Inc.
   - [iOS](https://apps.apple.com/us/app/spectacles-by-snap-inc/id6502670261)
   - [Android](https://play.google.com/store/apps/details?id=com.snap.spectacles.app&hl=en_US&pli=1)
