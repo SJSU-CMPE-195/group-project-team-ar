@@ -38,11 +38,11 @@
 | Date | Duration | Format | Attendees | Summary | Action Items |
 |------|----------|--------|-----------|---------|--------------|
 | 02/03/2026 | 1 hr | Remote | Toey, Bush, Josh, Jumana | Discuss project idea and details | Research features, feasibility, developer tools, and AR glasses hardware |
-| 02/12/2026 | 30 mins | Remote | Bush, Josh | Prepare for project pitch | |
+| 02/12/2026 | 30 mins | Remote | Bush, Josh | Prepare for project pitch presentation | |
 | 02/19/2026 | 30 mins | Remote | Toey, Bush, Josh | Discuss features and record project pitch | |
-| 02/20/2026 | 30 mins | In-person | Toey, Bush, Josh | Record project pitch | |
-| 03/12/2026 | 30 mins | Remote | Toey, Bush, Josh, Jumana | Work on report, finalize hardware and prototype plan |  |
-| 03/16/2026 |  | Remote | | Complete Spectacles setup and develop prototype | |
+| 02/20/2026 | 30 mins | In-person | Toey, Bush, Josh | Record project pitch | Finalize features, upload project pitch |
+| 03/12/2026 | 30 mins | Remote | Toey, Bush, Josh, Jumana | Work on report, finalize hardware and prototype plan | Order AR glasses, work on AR Lens Studio environment setup, research object detection feature specifics |
+| 03/16/2026 | 30 mins | Remote | Toey, Bush, Josh, Jumana | Work on environment setup and prototype | Research database, object detection dataset/model, checklist text overlay, and checklist/object detection integration|
 | | | In-person / Remote | | | |
 | | | In-person / Remote | | | |
 | | | In-person / Remote | | | |
