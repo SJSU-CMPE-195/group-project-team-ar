@@ -66,35 +66,42 @@ AisleVision is an AR grocery assistant that helps shoppers efficiently locate it
 
 ### Prerequisites
 
-- [Prerequisite 1] v.X.X+
-- [Prerequisite 2] v.X.X+
+- [Lens Studio For Spectacles](https://ar.snap.com/spectacles?utm_campaign=LensStudio_PM_P0_RET&utm_content=LS_ProductPage&utm_medium=PAIDPLATFORM&utm_source=GooglePM&utm_term=Retargeting_LS_Downloaders) v.5.15.4+
+- SnapOS for Spectacles v.5.64+
+
 
 ### Installation
 
+1. Required apps
+  - **Desktop**: Download [Snap AR Lens Studio](https://ar.snap.com/lens-studio-dl?utm_source=GooglePM&utm_medium=PAIDPLATFORM&utm_campaign=LensStudio_PM_P0_RET&utm_term=Retargeting_LS_Downloaders&utm_content=LS_ProductPage&gad_source=1&gad_campaignid=22443428343&gbraid=0AAAAADGpnVFmkQmQPCmCm1PUsAB-FSE3m)
+  - **Mobile**: Download Spectacles by Snap Inc.
+    - [iOS](https://apps.apple.com/us/app/spectacles-by-snap-inc/id6502670261)
+    - [Android](https://play.google.com/store/apps/details?id=com.snap.spectacles.app&hl=en_US&pli=1)
+    - Ensure Spectacles firmware is up to date via the mobile app (Check Settings → Software Update)
+
+2. Commands
 ```bash
-# Clone the repository
-git clone https://github.com/[org]/[repo].git
-cd [repo]
-
-# Install dependencies
-[install command]
-
-# Set up environment variables
-cp .env.example .env
-# Edit .env with your values
-
-# Run database migrations (if applicable)
-[migration command]
+git clone https://github.com/SJSU-CMPE-195/group-project-team-ar.git
+cd group-project-team-ar
 ```
+
+### Set up AR Glasses
+- Turn on Spectacles
+- Connect Spectacles to the mobile app
+- Connect Spectacles to the desktop app (Under `Preview Lens`)
+  - **Wireless**: Ensure Spectacles and your computer are on the same WiFi network
+  - **Wired**: Connect Spectacles to your computer using a USB-C cable
 
 ### Running Locally
+1. Open Lens Studio
+2. Click File → Open Project
+3. Go to `src/project-file-name`
+4. Select project file ending in `.esproj`
+5. Make sure Spectacles are connected
+6. In Lens Studio, click `Preview Lens` → Choose `Spectacles`
+7. Wait for the lens to load on the Spectacles
 
-```bash
-# Development mode
-[dev command]
-
-# The app will be available at http://localhost:XXXX
-```
+If setup is successful, you should see the assets rendered in your Spectacles view.
 
 ### Running Tests
 
