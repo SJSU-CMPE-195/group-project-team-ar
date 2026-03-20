@@ -3,6 +3,8 @@
 ### Prerequisites
 - Spectacles Version: 24
 
+<img src="../assets/images/spectacles-hardware.JPG" width="40%">
+
 ### 1. Install Required Apps
 
 - **Desktop**: Download [Lens Studio For Spectacles](https://ar.snap.com/spectacles?utm_campaign=LensStudio_PM_P0_RET&utm_content=LS_ProductPage&utm_medium=PAIDPLATFORM&utm_source=GooglePM&utm_term=Retargeting_LS_Downloaders)
