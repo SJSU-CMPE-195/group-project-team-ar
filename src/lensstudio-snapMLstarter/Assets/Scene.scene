@@ -2238,7 +2238,7 @@
   PrefabRemaps:
     []
   Name: ButtonWorldQueryModule
-  Enabled: true
+  Enabled: false
   Layers: 1
   LocalTransform: !<TransformEntity>
     Position: {x: 13.742977, y: 5.865253, z: 2.000000}
@@ -2480,7 +2480,7 @@
   PrefabRemaps:
     []
   Name: CaptureWQM
-  Enabled: true
+  Enabled: false
   Layers: 1
   LocalTransform: !<TransformEntity>
     Position: {x: -14.485863, y: -0.572636, z: 0.000000}
@@ -2606,7 +2606,7 @@
   PrefabRemaps:
     []
   Name: ButtonDepthCache
-  Enabled: true
+  Enabled: false
   Layers: 1
   LocalTransform: !<TransformEntity>
     Position: {x: -0.114173, y: 5.865253, z: 2.000000}
@@ -2671,7 +2671,7 @@
   PrefabRemaps:
     []
   Name: "[DepthCacheSpatializer]"
-  Enabled: true
+  Enabled: false
   Layers: 1
   LocalTransform: !<TransformEntity>
     Position: {x: 0.000000, y: 0.000000, z: 0.000000}
@@ -2733,7 +2733,7 @@
   PrefabRemaps:
     []
   Name: DebugDepthImage
-  Enabled: true
+  Enabled: false
   Layers: 1
   LocalTransform: !<TransformEntity>
     Position: {x: -22.048233, y: 23.877275, z: -0.000004}
@@ -6944,7 +6944,7 @@
   PrefabRemaps:
     []
   Name: Instructions
-  Enabled: true
+  Enabled: false
   Layers: 1
   LocalTransform: !<TransformEntity>
     Position: {x: 0.000000, y: 0.000000, z: 0.000000}
