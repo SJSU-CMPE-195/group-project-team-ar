@@ -55,10 +55,12 @@ AisleVision is an AR grocery assistant that helps shoppers efficiently locate it
 | Category | Technology |
 |----------|------------|
 | Frontend | Lens Studio, JavaScript |
-| Backend | Python |
+| Backend | JavaScript, TypeScript |
 | Hardware | Snap Spectacles |
-| Database | Snap Cloud|
+| Database | Own server |
 | Deployment | Snap Spectacles / Lens Studio |
+| Framework | SnapML |
+| ML Model | YOLOv7-tiny |
 
 ---
 
