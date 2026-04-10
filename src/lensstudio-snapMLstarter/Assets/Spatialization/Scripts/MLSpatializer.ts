@@ -332,7 +332,10 @@ export class MLSpatializer extends BaseScriptComponent {
     if (this.debugLogging) {
       if (detections.length === 0) {
         print("[MLSpatializer] No objects detected")
+        this.logMessage("Scanning...")
+        return
 
+        /*
         // Only log this message occasionally to avoid spamming
         if (Math.random() < 0.05) {
           // ~5% of frames
@@ -342,6 +345,7 @@ export class MLSpatializer extends BaseScriptComponent {
           this.logMessage("3. Ensure all classes are enabled")
           this.logMessage("4. Check input texture is correctly assigned")
         }
+        */
       } else {
         print(`[MLSpatializer] Detected ${detections.length} objects:`)
         detections.forEach((detection, index) => {
@@ -359,11 +363,24 @@ export class MLSpatializer extends BaseScriptComponent {
         }
 
         // Update log text with current detection info
+        /*
         this.logMessage(
           `Detected ${detections.length} objects. Highest confidence: ${Math.round(
             detections[0].score * 100
           )}% (${detections[0].label})`
         )
+        */
+
+        // Build a unique list of detected labels
+        const uniqueLabels: string[] = []
+
+        detections.forEach((detection) => {
+          if (uniqueLabels.indexOf(detection.label) === -1) {
+            uniqueLabels.push(detection.label)
+          }
+        })
+
+        this.logMessage(`Detected: ${uniqueLabels.join(", ")}`)
       }
     }
 
