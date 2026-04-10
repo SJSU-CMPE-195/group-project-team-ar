@@ -132,10 +132,12 @@ If setup is successful, you should see the assets rendered in your Spectacles vi
 
 ```
 .
-├── [folder]/           # Description
-├── src/                # Source code files
-├── tests/              # Test files
-├── docs/               # Documentation files
+├── assets/                            # Project assets
+│   └── models/                        # ML model files
+├── src/                               # Source code files
+│   └── lensstudio-snapMLstarter/      # Lens Studio project file
+├── tests/                             # Test files
+├── docs/                              # Documentation files
 └── README.md
 ```
 
