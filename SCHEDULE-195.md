@@ -44,7 +44,7 @@
 | 03/12/2026 | 30 mins | Remote | Toey, Bush, Josh, Jumana | Work on report, finalize hardware and prototype plan | Order AR glasses, work on AR Lens Studio environment setup, research object detection feature specifics |
 | 03/16/2026 | 30 mins | Remote | Toey, Bush, Josh, Jumana | Work on environment setup and prototype | Research database, object detection dataset/model, checklist text overlay, and checklist/object detection integration|
 | 03/19/2026 | 30 mins | Remote | Toey, Bush, Josh, Jumana | Discuss database and object detection | |
-| | | In-person / Remote | | | |
+| 04/09/2026 | 30 mins | Remote | Toey, Bush, Josh, Jumana | Discuss progress, research, work on report and PoC | Implement object detection, backend server, checklist, and frontend/UI for PoC |
 | | | In-person / Remote | | | |
 | | | In-person / Remote | | | |
 | | | In-person / Remote | | | |
