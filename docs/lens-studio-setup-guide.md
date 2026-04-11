@@ -42,5 +42,10 @@ cd group-project-team-ar
 
 If setup is successful, you should see a 3D red panda rendered and moving in your Spectacles view.
 
+### 6. Using the Spectacles
+- To capture a video, press the left temple button once to begin taking a 30s video.
+
 ### Reference
 [Building Your First Spectacles Lens](https://developers.snap.com/spectacles/get-started/start-building/build-your-first-spectacles-lens-tutorial)
+[Capture and Share](https://support.spectacles.com/hc/en-us/articles/27749950007316-Capture-and-Share)
+  
