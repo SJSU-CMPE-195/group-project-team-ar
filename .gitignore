@@ -1,3 +1,41 @@
+
+# ===========================
+# Lens Studio Template
+# ===========================
+src/lensstudio-basetemplate/
+
+*.cache
+
+# ===========================
+# Database
+# ===========================
+*.sqlite
+*.sqlite3
+*.db
+*.sql.gz
+
+# ===========================
+# Docker (local volumes)
+# ===========================
+docker-data/
+.docker/
+
+# ===========================
+# Misc
+# ===========================
+.vercel
+.netlify
+.serverless/
+*.bak
+*.backup
+
+# ===========================
+# Project Specific
+# ===========================
+# Add project-specific ignores below
+
+
+
 # ===========================
 # Environment & Secrets
 # ===========================
