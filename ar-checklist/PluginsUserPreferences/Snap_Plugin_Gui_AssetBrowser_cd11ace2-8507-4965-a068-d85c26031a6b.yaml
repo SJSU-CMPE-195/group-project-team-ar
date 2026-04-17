@@ -1,0 +1,11 @@
+CollapsedEntities:
+  type: stringset
+  value:
+    size: 5
+    values:
+      - ChecklistManager1.js
+      - Image 2.mat
+      - Image.mat
+      - Image.png
+      - flat.ss_graph
+  options: 4
