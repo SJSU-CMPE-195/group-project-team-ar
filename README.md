@@ -69,14 +69,20 @@ The current PoC does not include backend or database integration, functional che
 
 ## Demo
 
-[Link to demo video or GIF]
+**Video:**
+
+- [Object Detection Video Demo](https://drive.google.com/file/d/110_xQSGt6r8sHk9DzaZ3XtIHVvOLsZT6/view?usp=sharing)
+
 
 **Screenshots**
 
-| Feature | Screenshot |
-|---------|------------|
-| [Feature 1] | ![Screenshot](docs/screenshots/feature1.png) |
-| [Feature 2] | ![Screenshot](docs/screenshots/feature2.png) |
+- Object Detection:
+  
+  <img src="./assets/images/object-detection-PoC-refrigerator.jpg" width="30%">
+  <img src="./assets/images/object-detection-PoC-oven.jpg" width="30%">
+  <img src="./assets/images/object-detection-PoC-microwave.jpg" width="30%">
+
+- Checklist:
 
 ---
 
