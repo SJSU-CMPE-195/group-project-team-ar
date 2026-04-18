@@ -1,1 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AisleVision — AR Grocery Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
 
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon">◈</span>
+      AisleVision
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#tech">Tech</a></li>
+      <li><a href="app.html" class="nav-cta">Open App →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg">
+    <div class="scan-lines"></div>
+    <div class="grid-overlay"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      CMPE 195 · SJSU Senior Design · Spring 2026
+    </div>
+    <h1 class="hero-title">
+      Shop smarter.<br/>
+      <em>See everything.</em>
+    </h1>
+    <p class="hero-sub">
+      AisleVision turns your Snap Spectacles into an intelligent grocery guide — real-time object detection,
+      in-view checklists, and hands-free navigation, all without touching your phone.
+    </p>
+    <div class="hero-actions">
+      <a href="app.html" class="btn-primary">Try the Demo</a>
+      <a href="#how-it-works" class="btn-ghost">See How It Works</a>
+    </div>
+  </div>
+
+  <div class="hero-device">
+    <div class="device-frame">
+      <div class="ar-hud">
+        <div class="hud-header">
+          <span class="hud-label">AisleVision</span>
+          <span class="hud-status">◉ LIVE</span>
+        </div>
+        <div class="hud-detections">
+          <div class="detection-box" style="top:28%;left:15%;width:30%;height:25%">
+            <div class="det-label">Apple · 0.94</div>
+          </div>
+          <div class="detection-box detected" style="top:55%;left:50%;width:28%;height:22%">
+            <div class="det-label">Milk · 0.88</div>
+          </div>
+        </div>
+        <div class="hud-checklist">
+          <div class="hud-cl-title">Shopping List</div>
+          <div class="hud-item done">✓ Apples</div>
+          <div class="hud-item">○ Milk</div>
+          <div class="hud-item">○ Bread</div>
+          <div class="hud-item">○ Eggs</div>
+        </div>
+        <div class="hud-corner tl"></div>
+        <div class="hud-corner tr"></div>
+        <div class="hud-corner bl"></div>
+        <div class="hud-corner br"></div>
+      </div>
+    </div>
+    <div class="device-label">Snap Spectacles · YOLOv7-tiny · SnapML</div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="section-inner">
+    <div class="section-tag">/ FEATURES</div>
+    <h2 class="section-title">Built for real stores.<br/>Designed for real people.</h2>
+    <div class="feature-grid">
+      <div class="feature-card card-wide">
+        <div class="feat-icon">⬡</div>
+        <h3>Real-Time Object Detection</h3>
+        <p>YOLOv7-tiny runs entirely on-device via SnapML, identifying grocery items in your field of view with sub-200ms latency. No cloud. No lag.</p>
+        <div class="feat-spec">
+          <span>YOLOv7-tiny</span>
+          <span>SnapML</span>
+          <span>&lt;200ms</span>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">☑</div>
+        <h3>In-View Checklist</h3>
+        <p>Your shopping list overlays directly in the AR view. Items auto-check when detected by the camera.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">◎</div>
+        <h3>Hands-Free</h3>
+        <p>No phone needed while shopping. Control your list via the Spectacles touchpad or companion app before you enter the store.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">⟁</div>
+        <h3>Indoor Navigation <span class="coming-soon">Coming 195B</span></h3>
+        <p>Path planning through store aisles. AisleVision will guide you directly to each item with turn-by-turn directions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">⊕</div>
+        <h3>Focus Mode <span class="coming-soon">Coming 195B</span></h3>
+        <p>Spotlight one item at a time. The lens highlights the exact product and dims everything else.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how-it-works" id="how-it-works">
+  <div class="section-inner">
+    <div class="section-tag">/ HOW IT WORKS</div>
+    <h2 class="section-title">From list to cart<br/>in three steps.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>Build Your List</h3>
+          <p>Open the AisleVision companion app and type or voice-dictate your grocery list. Items sync to your Spectacles over WiFi.</p>
+        </div>
+      </div>
+      <div class="step-line"></div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>Put On Your Spectacles</h3>
+          <p>The AisleVision lens launches automatically. The ML model begins detecting grocery items the moment you look at the shelves.</p>
+        </div>
+      </div>
+      <div class="step-line"></div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>Shop and Check Off</h3>
+          <p>Recognized items are highlighted and checked off your list in real time. When the list is clear, you're done.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tech" id="tech">
+  <div class="section-inner">
+    <div class="section-tag">/ TECH STACK</div>
+    <h2 class="section-title">Under the hood.</h2>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-category">Hardware</div>
+        <div class="tech-name">Snap Spectacles</div>
+        <div class="tech-detail">SnapOS v5.64+</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-category">ML Model</div>
+        <div class="tech-name">YOLOv7-tiny</div>
+        <div class="tech-detail">ONNX · SnapML</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-category">AR Runtime</div>
+        <div class="tech-name">Lens Studio</div>
+        <div class="tech-detail">v5.15.4+</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-category">Lens Scripting</div>
+        <div class="tech-name">TypeScript</div>
+        <div class="tech-detail">SpectaclesInteractionKit</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-category">Backend (195B)</div>
+        <div class="tech-name">Node.js</div>
+        <div class="tech-detail">Custom Server</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-category">Web Frontend</div>
+        <div class="tech-name">React + Vite</div>
+        <div class="tech-detail">Companion App</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team">
+  <div class="section-inner">
+    <div class="section-tag">/ TEAM</div>
+    <h2 class="section-title">Who built this.</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">JA</div>
+        <div class="team-name">Jumana Ayoub</div>
+        <div class="team-handle">@jumanaayoub1</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">JP</div>
+        <div class="team-name">Joshua Pastores</div>
+        <div class="team-handle">@jjpastores</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">TL</div>
+        <div class="team-name">Toey Lui</div>
+        <div class="team-handle">@toeyldev</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">BN</div>
+        <div class="team-name">Bush Nguyen</div>
+        <div class="team-handle">@bush-nguyen</div>
+      </div>
+    </div>
+    <div class="advisor">Advisor: <strong>Jun Liu</strong> · SJSU CMPE 195A/B · Spring 2026</div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo"><span class="logo-icon">◈</span> AisleVision</div>
+    <div class="footer-links">
+      <a href="app.html">Open App</a>
+      <a href="https://github.com/SJSU-CMPE-195/group-project-team-ar" target="_blank">GitHub</a>
+    </div>
+    <div class="footer-copy">SJSU Senior Design · CMPE 195 · Spring 2026</div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.feature-card, .step, .tech-card, .team-card').forEach(el => observer.observe(el));
+
+  const hudItems = document.querySelectorAll('.hud-item:not(.done)');
+  let i = 0;
+  setInterval(() => {
+    hudItems.forEach(el => el.classList.remove('active'));
+    if (hudItems[i]) hudItems[i].classList.add('active');
+    i = (i + 1) % hudItems.length;
+  }, 1800);
+</script>
+</body>
+</html>
