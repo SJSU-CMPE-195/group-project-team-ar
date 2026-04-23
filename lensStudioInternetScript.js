@@ -1,13 +1,15 @@
 // @input string serverUrl
 const InternetModule = require("LensStudio:InternetModule");
 
-InternetModule.fetch(script.serverUrl + "/ping")
+const baseUrl = script.serverUrl.replace(/\/+$/, "");
+
+InternetModule.fetch(baseUrl + "/ping")
   .then(function(response) {
     print("Status: " + response.status);
     return response.text();
   })
   .then(function(text) {
-    print("Body: " + text);
+    print(text);
   })
   .catch(function(err) {
     print("Error: " + err);
