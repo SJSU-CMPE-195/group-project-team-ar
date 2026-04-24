@@ -82,7 +82,9 @@ The current PoC does not include backend or database integration, functional che
   <img src="./assets/images/object-detection-PoC-oven.jpg" width="30%">
   <img src="./assets/images/object-detection-PoC-microwave.jpg" width="30%">
 
-- Checklist:
+- Integration of checklist UI + object detection:
+
+  <img src="./assets/images/integrated-object-detection-checklist.jpg" width="40%">
 
 ---
 
