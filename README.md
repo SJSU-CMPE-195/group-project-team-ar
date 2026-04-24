@@ -71,7 +71,8 @@ The current PoC does not include backend or database integration, functional che
 
 **Video:**
 
-- [Object Detection Video Demo](https://drive.google.com/file/d/110_xQSGt6r8sHk9DzaZ3XtIHVvOLsZT6/view?usp=sharing)
+- [Object Detection](https://drive.google.com/file/d/1SKdcRGUvHku1vrL9_ZVeKAMw1syT-P3O/view?usp=sharing)
+- [Object Detection + Checklist Integration](https://drive.google.com/file/d/1pJVo3hFyOxSOzIs_P8EyAXDozdhAwsc7/view?usp=sharing)
 
 
 **Screenshots**
