@@ -3,45 +3,330 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AisleVision — List</title>
+  <title>AisleVision — Grocery List</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/app.css" />
 </head>
-<body class="app-body">
+<body>
 
-<header class="app-header">
-  <div class="app-header-inner">
-    <a href="index.html" class="app-brand">AisleVision</a>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon">◈</span>
+      AisleVision
+    </a>
+    <div class="nav-right">
+      <div class="sync-indicator" id="syncIndicator">
+        <span class="sync-dot" id="syncDot"></span>
+        <span class="sync-label" id="syncLabel">Offline</span>
+      </div>
+      <button class="share-btn" id="shareBtn" title="Copy shareable link">
+        <span class="share-icon">⊕</span> Share List
+      </button>
+    </div>
   </div>
-</header>
+</nav>
 
-<main class="app-main">
-  <div class="app-card">
-    <div class="app-card-head">
+<!--  MAIN LAYOUT  -->
+<main class="app-layout">
+
+  <!-- ── LEFT COLUMN: Checklist ── -->
+  <section class="checklist-col">
+
+    <div class="col-header">
       <div>
-        <h1 class="app-title">Grocery list</h1>
-        <p class="app-subtitle" id="itemCount">0 items</p>
+        <h1 class="col-title">Grocery List</h1>
+        <p class="col-sub" id="itemCount">0 items</p>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="clearPickedBtn" title="Remove picked-up items">✕ Clear done</button>
+        <button class="icon-btn icon-btn--accent" id="refreshBtn" title="Sync from server">↺ Sync</button>
       </div>
     </div>
 
+    <!-- Add item row -->
     <div class="add-row">
-      <input type="text" id="itemInput" class="item-input" placeholder="Add an item (e.g. Milk)" autocomplete="off" />
-      <button type="button" class="btn-primary" id="addBtn">Add</button>
+      <input
+        type="text"
+        id="itemInput"
+        class="item-input"
+        placeholder="Add an item… e.g. Oat Milk"
+        autocomplete="off"
+        autocapitalize="words"
+        spellcheck="false"
+      />
+      <button type="button" class="btn-add" id="addBtn">Add</button>
     </div>
 
-    <ul class="shopping-list" id="shoppingList"></ul>
-
-    <div class="app-actions">
-      <button type="button" class="btn-secondary" id="clearPickedBtn">Remove picked up</button>
-      <button type="button" class="btn-secondary btn-strong" id="refreshBtn">Refresh from server</button>
+    <!-- Quick-add chips -->
+    <div class="quick-chips">
+      <span class="chips-label">Quick add:</span>
+      <button class="chip" data-name="Milk">Milk</button>
+      <button class="chip" data-name="Eggs">Eggs</button>
+      <button class="chip" data-name="Bread">Bread</button>
+      <button class="chip" data-name="Apples">Apples</button>
+      <button class="chip" data-name="Butter">Butter</button>
+      <button class="chip" data-name="Yogurt">Yogurt</button>
     </div>
 
-    <p class="app-hint">Run <code>npm run dev</code> in the <code>server</code> folder, then open this page at <code>http://localhost:3000/app.html</code> to use the database.</p>
-  </div>
+    <!-- Shopping list -->
+    <ul class="shopping-list" id="shoppingList">
+      <!-- Items rendered by app.js -->
+    </ul>
+
+    <!-- Empty state -->
+    <div class="empty-state" id="emptyState" hidden>
+      <div class="empty-icon">◎</div>
+      <p class="empty-title">Your list is empty</p>
+      <p class="empty-sub">Add items above — they'll appear on your Spectacles automatically.</p>
+    </div>
+
+    <!-- URL list share panel -->
+    <div class="url-panel" id="urlPanel" hidden>
+      <div class="url-panel-head">
+        <span class="url-panel-label">⊕ Shareable link</span>
+        <button class="url-close" id="urlClose">✕</button>
+      </div>
+      <div class="url-row">
+        <input type="text" class="url-input" id="urlOutput" readonly />
+        <button class="btn-copy" id="copyBtn">Copy</button>
+      </div>
+      <p class="url-hint">Anyone with this link — including the Spectacles polling script — will see the same list.</p>
+    </div>
+
+  </section>
+
+  <!-- ── RIGHT COLUMN: AR Demo ── -->
+  <section class="demo-col">
+
+    <div class="col-header">
+      <div>
+        <h2 class="col-title">AR Preview</h2>
+        <p class="col-sub">Simulates what your Spectacles see</p>
+      </div>
+      <button class="btn-demo" id="demoBtn">▶ Start Demo</button>
+    </div>
+
+    <!-- AR Viewport -->
+    <div class="ar-viewport" id="arViewport">
+
+      <!-- HUD overlay -->
+      <div class="hud-overlay">
+        <div class="hud-header">
+          <span class="hud-brand">◈ AisleVision</span>
+          <span class="hud-live" id="hudLive">◉ LIVE</span>
+        </div>
+        <div class="hud-stats">
+          <span>FPS <strong id="fps">--</strong></span>
+          <span>YOLOv7-tiny</span>
+        </div>
+        <div class="hud-checklist" id="hudChecklist">
+          <!-- Mirrored from the shopping list by JS -->
+        </div>
+        <div class="hud-corner tl"></div>
+        <div class="hud-corner tr"></div>
+        <div class="hud-corner bl"></div>
+        <div class="hud-corner br"></div>
+      </div>
+
+      <!-- Bounding box layer -->
+      <div class="bbox-layer" id="boundingBoxes"></div>
+
+      <!-- Idle state -->
+      <div class="viewport-idle" id="viewportIdle">
+        <div class="idle-icon">⬡</div>
+        <p>Press <strong>Start Demo</strong> to simulate<br/>Spectacles object detection</p>
+      </div>
+
+      <!-- Simulated shelf items -->
+      <div class="shelf-grid">
+        <div class="shelf-row">
+          <div class="shelf-item si1">
+            <div class="item-icon">🥛</div>
+            <div class="item-label">Milk</div>
+          </div>
+          <div class="shelf-item si2">
+            <div class="item-icon">🫙</div>
+            <div class="item-label">Yogurt</div>
+          </div>
+          <div class="shelf-item si3">
+            <div class="item-icon">🍞</div>
+            <div class="item-label">Bread</div>
+          </div>
+          <div class="shelf-item si4">
+            <div class="item-icon">🍎</div>
+            <div class="item-label">Apples</div>
+          </div>
+        </div>
+        <div class="shelf-row">
+          <div class="shelf-item si5">
+            <div class="item-icon">🥚</div>
+            <div class="item-label">Eggs</div>
+          </div>
+          <div class="shelf-item si6">
+            <div class="item-icon">🍗</div>
+            <div class="item-label">Chicken</div>
+          </div>
+          <div class="shelf-item si7">
+            <div class="item-icon">🧈</div>
+            <div class="item-label">Butter</div>
+          </div>
+          <div class="shelf-item si8">
+            <div class="item-icon">🍌</div>
+            <div class="item-label">Bananas</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detection status bar -->
+      <div class="detection-bar">
+        <span class="det-dot"></span>
+        <span id="detectionStatus">Waiting for scan…</span>
+      </div>
+    </div>
+
+    <!-- Detection log -->
+    <div class="det-log">
+      <div class="log-header">
+        <span class="log-title">Detection Log</span>
+        <button class="log-clear" id="logClear">Clear</button>
+      </div>
+      <div class="log-entries" id="logEntries">
+        <div class="log-entry log-idle">[ready]  Waiting for demo start…</div>
+      </div>
+    </div>
+
+  </section>
+
 </main>
 
+<!-- ═══════════════════════════ SCRIPTS ═══════════════════════════ -->
 <script src="js/app.js"></script>
+<script src="js/demo.js"></script>
+<script>
+// ── URL-based list sharing ───────────────────────────────────────
+// Encodes the current item names into the URL so Spectacles / teammates
+// can hit: GET /app.html?list=Milk,Eggs,Bread  (or the /api/items endpoint)
+
+function encodeListToUrl() {
+  const items = typeof window.appItems === 'function' ? window.appItems() : [];
+  const names = items.filter(i => !i.checked).map(i => i.name);
+  if (!names.length) return window.location.href.split('?')[0];
+  const base = window.location.href.split('?')[0];
+  return base + '?list=' + encodeURIComponent(names.join(','));
+}
+
+function showSharePanel() {
+  const url = encodeListToUrl();
+  document.getElementById('urlOutput').value = url;
+  document.getElementById('urlPanel').hidden = false;
+}
+
+document.getElementById('shareBtn').addEventListener('click', showSharePanel);
+document.getElementById('urlClose').addEventListener('click', () => {
+  document.getElementById('urlPanel').hidden = true;
+});
+document.getElementById('copyBtn').addEventListener('click', () => {
+  const input = document.getElementById('urlOutput');
+  navigator.clipboard.writeText(input.value).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+  });
+});
+
+// Load items from URL on first visit (handy when glasses share a link back)
+(function seedFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const listParam = params.get('list');
+  if (listParam) {
+    const names = listParam.split(',').map(s => s.trim()).filter(Boolean);
+    // Queue seed after DOMContentLoaded + app.js initialisation
+    window._urlSeedNames = names;
+  }
+})();
+
+// ── Quick-add chips ──────────────────────────────────────────────
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const input = document.getElementById('itemInput');
+    input.value = chip.dataset.name;
+    if (typeof window.addItem === 'function') window.addItem();
+    else {
+      // fallback: dispatch enter
+      input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+    }
+    input.focus();
+  });
+});
+
+// ── HUD checklist mirror ─────────────────────────────────────────
+function updateHud() {
+  const items = typeof window.appItems === 'function' ? window.appItems() : [];
+  const hud = document.getElementById('hudChecklist');
+  if (!hud) return;
+  hud.innerHTML = '<div class="hud-cl-title">Shopping List</div>' +
+    (items.length === 0
+      ? '<div class="hud-item hud-empty">List is empty</div>'
+      : items.map(i =>
+          `<div class="hud-item${i.checked ? ' hud-done' : ''}">
+            ${i.checked ? '✓' : '○'} ${i.name}
+          </div>`
+        ).join('')
+    );
+}
+
+// Patch renderList to also update HUD
+const _origRenderList = window.renderList;
+// app.js calls renderList() — we hook it via MutationObserver on the list
+const listObserver = new MutationObserver(updateHud);
+document.addEventListener('DOMContentLoaded', () => {
+  const list = document.getElementById('shoppingList');
+  if (list) listObserver.observe(list, { childList: true, subtree: true });
+
+  // Empty state toggle
+  const emptyObs = new MutationObserver(() => {
+    const empty = list.children.length === 0;
+    document.getElementById('emptyState').hidden = !empty;
+  });
+  emptyObs.observe(list, { childList: true });
+
+  // Seed from URL (after app.js has initialised items)
+  if (window._urlSeedNames && window._urlSeedNames.length) {
+    setTimeout(async () => {
+      for (const name of window._urlSeedNames) {
+        const input = document.getElementById('itemInput');
+        input.value = name;
+        if (typeof window.addItem === 'function') await window.addItem();
+      }
+    }, 400);
+  }
+
+  updateHud();
+});
+
+// ── Demo button wiring (demo.js exposes toggleDemo globally) ─────
+document.getElementById('demoBtn').addEventListener('click', () => {
+  if (typeof toggleDemo === 'function') toggleDemo();
+});
+document.getElementById('logClear').addEventListener('click', () => {
+  document.getElementById('logEntries').innerHTML =
+    '<div class="log-entry log-idle">[cleared]  Log cleared.</div>';
+});
+
+// ── Sync indicator ───────────────────────────────────────────────
+// app.js sets window.apiOnline — poll it
+setInterval(() => {
+  const online = window.apiOnline === true;
+  const dot   = document.getElementById('syncDot');
+  const label = document.getElementById('syncLabel');
+  dot.classList.toggle('active', online);
+  label.textContent = online ? 'DB Connected' : 'Offline (local)';
+}, 1500);
+</script>
+
 </body>
 </html>
