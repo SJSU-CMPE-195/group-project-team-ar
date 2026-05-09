@@ -3,109 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AisleVision — Your List</title>
+  <title>AisleVision — List</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/app.css" />
 </head>
 <body class="app-body">
 
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <span class="logo-icon">◈</span> AisleVision
-    </a>
-    <div class="nav-right">
-      <span class="sync-status" id="syncStatus">
-        <span class="sync-dot"></span> Ready to sync
-      </span>
-    </div>
+<header class="app-header">
+  <div class="app-header-inner">
+    <a href="index.html" class="app-brand">AisleVision</a>
   </div>
-</nav>
+</header>
 
-<div class="app-layout">
+<main class="app-main">
+  <div class="app-card">
+    <div class="app-card-head">
+      <div>
+        <h1 class="app-title">Grocery list</h1>
+        <p class="app-subtitle" id="itemCount">0 items</p>
+      </div>
+    </div>
 
-  <aside class="list-panel">
-    <div class="panel-header">
-      <h2>Shopping List</h2>
-      <span class="item-count" id="itemCount">0 items</span>
+    <div class="add-row">
+      <input type="text" id="itemInput" class="item-input" placeholder="Add an item (e.g. Milk)" autocomplete="off" />
+      <button type="button" class="btn-primary" id="addBtn">Add</button>
     </div>
-    <div class="add-item-row">
-      <input type="text" id="itemInput" class="item-input" placeholder="Add an item… (e.g. Milk)" autocomplete="off" />
-      <button class="add-btn" id="addBtn" onclick="addItem()">+</button>
-    </div>
-    <div class="category-filter">
-      <button class="filter-chip active" onclick="filterCategory('all', this)">All</button>
-      <button class="filter-chip" onclick="filterCategory('dairy', this)">Dairy</button>
-      <button class="filter-chip" onclick="filterCategory('produce', this)">Produce</button>
-      <button class="filter-chip" onclick="filterCategory('bakery', this)">Bakery</button>
-      <button class="filter-chip" onclick="filterCategory('meat', this)">Meat</button>
-      <button class="filter-chip" onclick="filterCategory('other', this)">Other</button>
-    </div>
+
     <ul class="shopping-list" id="shoppingList"></ul>
-    <div class="list-footer">
-      <button class="footer-btn" onclick="clearChecked()">Clear checked</button>
-      <button class="footer-btn footer-btn-accent" onclick="syncToGlasses()">↑ Sync to Glasses</button>
-    </div>
-  </aside>
 
-  <main class="ar-panel">
-    <div class="ar-panel-header">
-      <h2>AR Preview</h2>
-      <p class="ar-panel-sub">Simulated view through Snap Spectacles</p>
-      <button class="demo-toggle-btn" id="demoBtn" onclick="toggleDemo()">▶ Start Demo</button>
+    <div class="app-actions">
+      <button type="button" class="btn-secondary" id="clearPickedBtn">Remove picked up</button>
+      <button type="button" class="btn-secondary btn-strong" id="refreshBtn">Refresh from server</button>
     </div>
 
-    <div class="ar-viewport" id="arViewport">
-      <div class="viewport-bg">
-        <div class="store-aisle">
-          <div class="shelf shelf-top">
-            <div class="shelf-item si-1" data-label="Milk"    data-cat="dairy">🥛</div>
-            <div class="shelf-item si-2" data-label="Yogurt"  data-cat="dairy">🫙</div>
-            <div class="shelf-item si-3" data-label="Bread"   data-cat="bakery">🍞</div>
-            <div class="shelf-item si-4" data-label="Apples"  data-cat="produce">🍎</div>
-          </div>
-          <div class="shelf shelf-bottom">
-            <div class="shelf-item si-5" data-label="Eggs"    data-cat="other">🥚</div>
-            <div class="shelf-item si-6" data-label="Chicken" data-cat="meat">🍗</div>
-            <div class="shelf-item si-7" data-label="Butter"  data-cat="dairy">🧈</div>
-            <div class="shelf-item si-8" data-label="Bananas" data-cat="produce">🍌</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ar-overlay">
-        <div class="hud-top">
-          <div class="hud-pill"><span class="rec-dot"></span> AisleVision · LIVE</div>
-          <div class="hud-pill">YOLOv7-tiny · <span id="fps">--</span> FPS</div>
-        </div>
-        <div id="boundingBoxes"></div>
-        <div class="hud-list-overlay" id="hudList">
-          <div class="hud-list-title">◈ Your List</div>
-          <div id="hudListItems"></div>
-        </div>
-        <div class="hud-bottom"><span id="detectionStatus">Waiting for scan…</span></div>
-      </div>
-
-      <div class="viewport-idle" id="viewportIdle">
-        <div class="idle-icon">◈</div>
-        <p>Press <strong>Start Demo</strong> to simulate<br/>the Spectacles AR view</p>
-      </div>
-    </div>
-
-    <div class="detection-log">
-      <div class="log-header">Detection Log</div>
-      <div class="log-entries" id="logEntries">
-        <div class="log-entry log-idle">Waiting for demo to start…</div>
-      </div>
-    </div>
-  </main>
-
-</div>
+    <p class="app-hint">Run <code>npm run dev</code> in the <code>server</code> folder, then open this page at <code>http://localhost:3000/app.html</code> to use the database.</p>
+  </div>
+</main>
 
 <script src="js/app.js"></script>
-<script src="js/demo.js"></script>
 </body>
 </html>
