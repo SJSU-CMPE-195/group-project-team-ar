@@ -1,0 +1,21 @@
+{
+  "name": "ar",
+  "version": "1.0.0",
+  "description": "An Augmented Reality (AR) grocery assistant that uses computer vision and real-time path planning to help shoppers locate items and navigate grocery stores efficiently.",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "ngrok": "^5.0.0-beta.2"
+  }
+}
