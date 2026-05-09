@@ -85,6 +85,10 @@ app.delete('/api/items/:id', async (req, res) => {
   res.status(204).send();
 });
 
+app.get('/', (_req, res) => {
+  res.redirect(302, '/app.html');
+});
+
 app.use(express.static(webRoot));
 
 async function main() {
