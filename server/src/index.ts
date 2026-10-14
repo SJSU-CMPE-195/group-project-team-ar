@@ -2,6 +2,8 @@ import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
 import path from 'node:path';
+import { planRoute } from './pathfinding/routePlanner.js';
+import { loadStoreMap } from './pathfinding/storeMap.js';
 import { fileURLToPath } from 'node:url';
 import {
   deleteItem,
@@ -83,6 +85,93 @@ app.delete('/api/items/:id', async (req, res) => {
     return;
   }
   res.status(204).send();
+});
+
+/**
+ * POST /api/navigation/route
+ *
+ * Calculates an efficient route to multiple aisles.
+ *
+ * Example request:
+ * {
+ *   "aisles": ["E73", "D74", "B49"],
+ *   "checkout": true
+ * }
+ */
+app.post('/api/navigation/route', (req, res) => {
+  try {
+
+    const {
+      aisles,
+      start,
+      checkout
+    } = req.body ?? {};
+
+    // Validate requested aisles
+    if (
+      !Array.isArray(aisles) ||
+      !aisles.every(
+        (aisle: unknown) => typeof aisle === 'string'
+      ) ||
+      aisles.length > 8
+    ) {
+      res.status(400).json({
+        error: 'aisles must be an array of up to 8 strings'
+      });
+      return;
+    }
+
+    // Validate optional starting coordinates
+    const validStart =
+      start === undefined ||
+      (
+        Array.isArray(start) &&
+        start.length === 2 &&
+        start.every(Number.isInteger)
+      );
+
+    // Validate checkout option
+    if (
+      !validStart ||
+      (
+        checkout !== undefined &&
+        typeof checkout !== 'boolean'
+      )
+    ) {
+      res.status(400).json({
+        error: 'Invalid start or checkout parameter'
+      });
+      return;
+    }
+
+    // Load our demo store map
+    const map = loadStoreMap();
+
+    // Calculate best route
+    const route = planRoute(
+      map,
+      aisles,
+      start ?? map.entrance,
+      checkout ?? false
+    );
+
+    // Handle unreachable destinations
+    if (!route) {
+      res.status(404).json({
+        error: 'No walkable route found'
+      });
+      return;
+    }
+
+    // Return the planned route
+    res.json(route);
+
+  } catch (error) {
+
+    res.status(400).json({
+      error: String(error)
+    });
+  }
 });
 
 app.get('/', (_req, res) => {
