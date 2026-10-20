@@ -1,0 +1,68 @@
+- !<AssetImportMetadata/d01a5453-c15d-4104-9305-775d9889af24>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> 3a4c584a-77a5-428c-91fa-8ee03afa7489
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> 3a4c584a-77a5-428c-91fa-8ee03afa7489
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> b880e843-1e63-46ee-9256-e8087dabe185
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/b880e843-1e63-46ee-9256-e8087dabe185>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: a7a524bf-9f39-4f03-9d50-37c40d342196
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    boxDepth: false
+    boxPrefab: false
+    debugLogging: false
+    maxBoxes: false
+    mlSpatializer: false
+    persistence: false
+    pinholeCapture: false
+    uvOffset: false
+    uvScale: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - mlSpatializer: !<MappingBased.AssignableType> 00000000-0000-0000-0000-000000000000
+      pinholeCapture: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+      boxPrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
+      maxBoxes: !<float> 5.000000
+      boxDepth: !<float> 150.000000
+      persistence: 0.300000
+      uvScale: !<Vec2> {x: 1.000000, y: 1.000000}
+      uvOffset: !<Vec2> {x: 0.000000, y: 0.000000}
+      debugLogging: false
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @input AssignableType mlSpatializer {"hint":"MLSpatializer that emits detection updates"}'
+    - '// @input AssignableType_1 pinholeCapture {"hint":"PinholeCapture used to project detections into world space"}'
+    - '// @input Asset.ObjectPrefab boxPrefab {"hint":"Prefab with a DetectionContainer and ClosedPolyline (e.g. DetectionPrefab)"}'
+    - '// @input float maxBoxes = 5 {"hint":"Maximum number of boxes to show at once", "widget":"slider", "min":1, "max":20, "step":1}'
+    - '// @input float boxDepth = 150 {"hint":"Distance from the camera (cm) at which boxes are drawn"}'
+    - '// @input float persistence = 0.3 {"hint":"Time in seconds to keep a box after its detection disappears", "widget":"slider", "min":0, "max":2, "step":0.05}'
+    - '// @input vec2 uvScale = "{1, 1}" {"hint":"Scale applied to detection UVs before projection (calibration)"}'
+    - '// @input vec2 uvOffset = "{0, 0}" {"hint":"Offset applied to detection UVs before projection (calibration)"}'
+    - '// @input bool debugLogging {"hint":"Log box placement to console"}'
