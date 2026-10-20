@@ -10,6 +10,7 @@
     - !<own> 1206153a-0537-45da-8207-6282b3a2feba
     - !<own> 5c6774a0-b43f-4410-b149-73346125e759
     - !<own> e86787f7-0576-4444-ab4c-855b7e4bcc5a
+    - !<own> df028522-6743-4530-92d6-f246a6a011e2
   layers: !<Layers/267ee9a7-aff2-4f9d-9a49-f71214747d03>
     userLayers:
       []
@@ -2702,6 +2703,22 @@
     []
   Components:
     - !<own> 9ba7bea1-c904-4fa6-ae01-d501025a929c
+- !<ScriptComponent/4f8c6322-072c-4de5-9015-513186080531>
+  PrefabRemaps:
+    []
+  Name: PinholeCapture
+  Enabled: true
+  ScriptAsset: !<reference> 4532a113-2cf5-4c05-9a02-dad0a904034f
+  ScriptInputsDefault:
+    debugLogging: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      debugLogging: false
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/51119473-3505-4c4a-ae65-b29dc2888806>
   PrefabRemaps:
     []
@@ -3089,6 +3106,34 @@
   Components:
     - !<own> 249cca52-6769-414d-9b89-933a1c6eb746
     - !<own> 79fdad68-acfb-46be-b9ff-6f3cd1652b1d
+- !<ScriptComponent/67510424-ee47-42bb-9280-29ff5915f0aa>
+  PrefabRemaps:
+    []
+  Name: BoundingBoxVisualizer
+  Enabled: true
+  ScriptAsset: !<reference> 3a4c584a-77a5-428c-91fa-8ee03afa7489
+  ScriptInputsDefault:
+    maxBoxes: true
+    boxDepth: true
+    persistence: true
+    uvScale: true
+    uvOffset: true
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      mlSpatializer: !<MappingBased.AssignableType> b7acb457-fcbb-4fd4-93a6-f7618436223d
+      pinholeCapture: !<MappingBased.AssignableType_1> 4f8c6322-072c-4de5-9015-513186080531
+      boxPrefab: !<reference.ObjectPrefab> bf408c8f-85d6-4a8e-aa5c-582dbd0f3397
+      maxBoxes: !<float> 5.000000
+      boxDepth: !<float> 150.000000
+      persistence: 0.300000
+      uvScale: !<Vec2> {x: 1.000000, y: 1.000000}
+      uvOffset: !<Vec2> {x: 0.000000, y: 0.000000}
+      debugLogging: true
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/69a60a30-bce7-4c04-9aa2-5943b2bcc149>
   PrefabRemaps:
     []
@@ -6981,6 +7026,22 @@
     - !<own> a70cdf5f-0d75-46e6-a662-02b5fd11118d
   Components:
     []
+- !<SceneObject/df028522-6743-4530-92d6-f246a6a011e2>
+  PrefabRemaps:
+    []
+  Name: "[BoundingBoxes]"
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> 4f8c6322-072c-4de5-9015-513186080531
+    - !<own> 67510424-ee47-42bb-9280-29ff5915f0aa
 - !<SceneObject/df8231af-bfc4-4e93-80ac-a0c57f0a589a>
   PrefabRemaps:
     []

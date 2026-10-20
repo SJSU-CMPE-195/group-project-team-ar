@@ -333,7 +333,6 @@ export class MLSpatializer extends BaseScriptComponent {
       if (detections.length === 0) {
         print("[MLSpatializer] No objects detected")
         this.logMessage("Scanning...")
-        return
 
         /*
         // Only log this message occasionally to avoid spamming
