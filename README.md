@@ -9,7 +9,7 @@
 | Toey Lui | [@toeyldev](https://github.com/toeyldev) | toey.lui@sjsu.edu |
 | Bush Nguyen | [@bush-nguyen](https://github.com/bush-nguyen) | bush.nguyen@sjsu.edu |
 
-**Advisor:** Jun Liu
+**Advisor:** Mark Rayes
 
 ---
 
