@@ -1,0 +1,43 @@
+studioVersion:
+  major: 5
+  minor: 15
+  patch: 4
+  build: 26022322
+  type: Public
+coreVersion: 330
+clientVersion: 13.60
+updateCheckpoint: 76
+sceneId: 0a1ccb1a-fe88-4fbb-9883-e3af3c75fd99
+metaInfo:
+  hints:
+    []
+  tags:
+    []
+  lensName: SnapML Starter
+  lensDescriptors:
+    - EXPERIMENTAL_API
+  lensApplicability:
+    - Front
+    - Back
+  lensClientCompatibilities:
+    - Spectacles
+  platformBundlesEnabled: false
+  iconHash: ""
+  videoPreviewHash: ""
+  fromTemplateName: SnapML Starter
+  fromTemplateUrl: Lens Studio 5.15.4.26022322
+  activationCamera: Front
+  sourceMapEnabled: false
+  usingMinClientVersions: false
+  androidMinClientVersion:
+    major: 0
+    minor: 0
+    patch: 0
+    build: 0
+  iOSMinClientVersion:
+    major: 0
+    minor: 0
+    patch: 0
+    build: 0
+  documentId: ea4da2d9-c38c-4c78-8a6c-c618bcff0527
+  originalDocumentId: ea4da2d9-c38c-4c78-8a6c-c618bcff0527

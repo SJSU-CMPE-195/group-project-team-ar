@@ -6,9 +6,10 @@ and completed/total progress. Mock mode is off by default.
 
 ## Add the controller to a Spectacles Lens
 
-1. Open the Lens Studio project.
+1. Open `lensstudio-snapMLstarter.esproj` from this folder in Lens Studio.
 2. Create a **Screen Text** object named `GroceryListText`.
-3. Add a **Script Component** and select `GroceryListController.js`.
+3. Add a **Script Component** and select `Assets/GroceryListController.js` from
+   the Asset Browser.
 4. Optionally assign the object's Text component to **Grocery Text**; otherwise
    the script finds the Text component on the same object.
 5. Set **API URL** to the checklist endpoint. For local Preview use
