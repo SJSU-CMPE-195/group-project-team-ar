@@ -1,0 +1,44 @@
+- !<AssetImportMetadata/244c4d5f-fa00-4b02-994a-13a0280a2f66>
+  ImportedAssetIds:
+    JavaScriptAsset: !<reference> b013bcb4-d180-4cdf-8374-dc5ebc52a908
+  ImporterName: JavaScriptAssetImporter
+  PrimaryAsset: !<reference> b013bcb4-d180-4cdf-8374-dc5ebc52a908
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    JavaScriptAsset: !<own> c712dc54-da28-4b35-86d2-64023fc43381
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<ScriptAssetData/c712dc54-da28-4b35-86d2-64023fc43381>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: bb6d0a08-bef0-44f3-8663-902b3b31d4a5
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    checklistController: false
+    itemIndex: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - checklistController: !<reference.ScriptComponent> 00000000-0000-0000-0000-000000000000
+      itemIndex: 0
+  ScriptTypes:
+    -
+      {}

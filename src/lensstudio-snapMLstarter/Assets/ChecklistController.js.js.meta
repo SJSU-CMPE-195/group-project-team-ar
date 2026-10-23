@@ -1,0 +1,48 @@
+- !<AssetImportMetadata/7025f525-f6ae-48e1-b45b-6fb1d29d7a63>
+  ImportedAssetIds:
+    JavaScriptAsset: !<reference> 259542ac-e601-4595-baed-9b607432d030
+  ImporterName: JavaScriptAssetImporter
+  PrimaryAsset: !<reference> 259542ac-e601-4595-baed-9b607432d030
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    JavaScriptAsset: !<own> 48e8b298-59cb-4bb9-9d7d-1138818ee4dd
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<ScriptAssetData/48e8b298-59cb-4bb9-9d7d-1138818ee4dd>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: cf7321ed-058c-41f4-935b-696813a1806b
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    item1: false
+    item2: false
+    item3: false
+    progressText: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - item1: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      item2: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      item3: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      progressText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}

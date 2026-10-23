@@ -13,7 +13,7 @@ metaInfo:
     []
   tags:
     []
-  lensName: SnapML Starter
+  lensName: Grocery List Panel
   lensDescriptors:
     - EXPERIMENTAL_API
   lensApplicability:
@@ -22,7 +22,7 @@ metaInfo:
   lensClientCompatibilities:
     - Spectacles
   platformBundlesEnabled: false
-  iconHash: ""
+  iconHash: 170f30f74bb464c52a560b4d3af5e2de
   videoPreviewHash: ""
   fromTemplateName: SnapML Starter
   fromTemplateUrl: Lens Studio 5.15.4.26022322
