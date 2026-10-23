@@ -114,6 +114,15 @@ async function addItem() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+  document.getElementById('commonItemSelect').addEventListener('change', (e) => {
+    const sel = e.target;
+    const v = sel.value;
+    if (!v) return;
+    document.getElementById('itemInput').value = v;
+    sel.selectedIndex = 0;
+    document.getElementById('itemInput').focus();
+  });
+
   document.getElementById('itemInput').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') addItem();
   });
