@@ -1,0 +1,48 @@
+- !<AssetImportMetadata/e1a679f8-5a9e-45b4-abf7-e9ab08ce6d3f>
+  ImportedAssetIds:
+    JavaScriptAsset: !<reference> 9fa490d3-1c77-479f-9196-5b67da3c79ea
+  ImporterName: JavaScriptAssetImporter
+  PrimaryAsset: !<reference> 9fa490d3-1c77-479f-9196-5b67da3c79ea
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    JavaScriptAsset: !<own> 3198b9a9-4dd2-4607-b6c9-9d435468ccf9
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<ScriptAssetData/3198b9a9-4dd2-4607-b6c9-9d435468ccf9>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: ed81f11e-f06b-44f6-9e46-ba89b624af42
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    apiUrl: false
+    groceryText: false
+    internetModule: false
+    mockMode: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - groceryText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      internetModule: !<reference.InternetModule> 00000000-0000-0000-0000-000000000000
+      apiUrl: "http://127.0.0.1:8000/api/lists/demo/items"
+      mockMode: false
+  ScriptTypes:
+    -
+      {}
