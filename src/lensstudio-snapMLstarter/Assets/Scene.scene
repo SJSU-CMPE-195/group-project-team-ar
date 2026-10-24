@@ -3124,6 +3124,7 @@
     "":
       mlSpatializer: !<MappingBased.AssignableType> b7acb457-fcbb-4fd4-93a6-f7618436223d
       pinholeCapture: !<MappingBased.AssignableType_1> 4f8c6322-072c-4de5-9015-513186080531
+      cropTexture: !<reference.Texture> 19b09aae-b059-4551-b002-c759e908b66c
       boxPrefab: !<reference.ObjectPrefab> bf408c8f-85d6-4a8e-aa5c-582dbd0f3397
       maxBoxes: !<float> 5.000000
       boxDepth: !<float> 150.000000
