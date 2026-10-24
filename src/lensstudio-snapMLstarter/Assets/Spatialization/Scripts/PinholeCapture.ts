@@ -33,7 +33,8 @@ export class PinholeCapture extends BaseScriptComponent {
       try {
         // Initialize camera module and its dependencies
         this.cameraRequest = CameraModule.createCameraRequest()
-        this.cameraRequest.cameraId = CameraModule.CameraId.Right_Color
+        // Match the camera CameraTexture.js feeds to the ML model, so UVs line up
+        this.cameraRequest.cameraId = CameraModule.CameraId.Default_Color
         const cameraTexture = this.cameraModule.requestCamera(this.cameraRequest)
 
         if (!cameraTexture) {

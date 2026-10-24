@@ -9,7 +9,7 @@
 | Toey Lui | [@toeyldev](https://github.com/toeyldev) | toey.lui@sjsu.edu |
 | Bush Nguyen | [@bush-nguyen](https://github.com/bush-nguyen) | bush.nguyen@sjsu.edu |
 
-**Advisor:** Jun Liu
+**Advisor:** Mark Rayes
 
 ---
 
@@ -71,7 +71,8 @@ The current PoC does not include backend or database integration, functional che
 
 **Video:**
 
-- [Object Detection Video Demo](https://drive.google.com/file/d/110_xQSGt6r8sHk9DzaZ3XtIHVvOLsZT6/view?usp=sharing)
+- [Object Detection](https://drive.google.com/file/d/1SKdcRGUvHku1vrL9_ZVeKAMw1syT-P3O/view?usp=sharing)
+- [Object Detection + Checklist Integration](https://drive.google.com/file/d/1pJVo3hFyOxSOzIs_P8EyAXDozdhAwsc7/view?usp=sharing)
 
 
 **Screenshots**
@@ -82,7 +83,9 @@ The current PoC does not include backend or database integration, functional che
   <img src="./assets/images/object-detection-PoC-oven.jpg" width="30%">
   <img src="./assets/images/object-detection-PoC-microwave.jpg" width="30%">
 
-- Checklist:
+- Integration of checklist UI + object detection:
+
+  <img src="./assets/images/integrated-object-detection-checklist.jpg" width="40%">
 
 ---
 
