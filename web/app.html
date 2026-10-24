@@ -13,7 +13,7 @@
 
 <header class="app-header">
   <div class="app-header-inner">
-    <a href="index.html" class="app-brand">AisleVision</a>
+    <span class="app-brand">AisleVision</span>
   </div>
 </header>
 
@@ -26,8 +26,21 @@
       </div>
     </div>
 
+    <div class="quick-pick-row">
+      <label class="visually-hidden" for="commonItemSelect">Pick an item</label>
+      <select id="commonItemSelect" class="common-item-select" title="Pick an item to fill the box below">
+        <option value="">Pick an item…</option>
+        <option value="Banana">Banana</option>
+        <option value="Cell phone">Cell phone</option>
+        <option value="Microwave">Microwave</option>
+        <option value="Orange">Orange</option>
+        <option value="Oven">Oven</option>
+        <option value="Refrigerator">Refrigerator</option>
+      </select>
+    </div>
+
     <div class="add-row">
-      <input type="text" id="itemInput" class="item-input" placeholder="Add an item (e.g. Milk)" autocomplete="off" />
+      <input type="text" id="itemInput" class="item-input" placeholder="Add an item (e.g. Banana)" autocomplete="off" />
       <button type="button" class="btn-primary" id="addBtn">Add</button>
     </div>
 
@@ -37,8 +50,6 @@
       <button type="button" class="btn-secondary" id="clearPickedBtn">Remove picked up</button>
       <button type="button" class="btn-secondary btn-strong" id="refreshBtn">Refresh from server</button>
     </div>
-
-    <p class="app-hint">Run <code>npm run dev</code> in the <code>server</code> folder, then open this page at <code>http://localhost:3000/app.html</code> to use the database.</p>
   </div>
 </main>
 

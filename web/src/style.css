@@ -1,0 +1,24 @@
+@import "../css/app.css";
+
+.app-status {
+  min-height: 1.25rem;
+  padding: 10px 22px 0;
+}
+
+.app-status.error {
+  color: var(--danger);
+}
+
+.item-check {
+  background: var(--surface);
+}
+
+.item-delete {
+  opacity: 1;
+}
+
+.btn-primary:disabled,
+.btn-secondary:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
