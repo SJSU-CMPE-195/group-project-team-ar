@@ -115,13 +115,16 @@ AisleVision is an Augmented Reality (AR) grocery assistant designed for Snap Spe
 
 | Category | Technology |
 |----------|------------|
-| Frontend | Lens Studio, JavaScript |
-| Backend | JavaScript, TypeScript |
+| Spectacles Lens | Lens Studio, JavaScript, TypeScript |
+| Backend | Python, FastAPI, SQLAlchemy |
+| Web App | Vite, JavaScript |
+| Database | MySQL |
+| Networking | REST API, ngrok (HTTPS tunnel for Spectacles) |
+| Object Detection | SnapML framework, YOLOv7-tiny (ONNX) |
+| Hand Tracking | Spectacles Interaction Kit (pinch, cursor) |
+| Path Planning | TypeScript, A* algorithm on 2D map |
 | Hardware | Snap Spectacles |
-| Database | Own server |
 | Deployment | Snap Spectacles / Lens Studio |
-| Framework | SnapML |
-| ML Model | YOLOv7-tiny |
 
 ---
 
