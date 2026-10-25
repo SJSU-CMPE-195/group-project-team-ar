@@ -50,14 +50,24 @@ AisleVision is an Augmented Reality (AR) grocery assistant designed for Snap Spe
 
 ## Prerequisites
 
+#### Hardware and Account
 - Snap Spectacles 24 device (SnapOS v.5.64+)
+- A Snap account for Lens Studio and the Spectacles app
+
+#### AR Glasses
 - **Desktop**: [Snap AR Lens Studio For Spectacles](https://ar.snap.com/spectacles?utm_campaign=LensStudio_PM_P0_RET&utm_content=LS_ProductPage&utm_medium=PAIDPLATFORM&utm_source=GooglePM&utm_term=Retargeting_LS_Downloaders) (v.5.15.4+)
 - **Mobile**: Spectacles app
   - [iOS](https://apps.apple.com/us/app/spectacles-by-snap-inc/id6502670261)
   - [Android](https://play.google.com/store/apps/details?id=com.snap.spectacles.app&hl=en_US&pli=1)
   - Ensure Spectacles firmware is up to date via the mobile app (Check Settings → Software Update)
+
+#### Backend and Web
+- Python 3.10+
+- MySQL Community Server (8.x+)
+- Node.js LTS (with `npm`)
+- ngrok
 - Git
-- macOS or Windows development machine
+- macOS/Windows development machine
 
 ---
 
