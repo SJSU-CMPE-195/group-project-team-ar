@@ -45,7 +45,8 @@ function formatChecklist(data) {
     });
   }
   lines.push("");
-  lines.push("Progress: " + completed + "/" + total + " completed");
+  lines.push("Progress:");
+  lines.push(completed + "/" + total + " completed");
   return lines.join("\n");
 }
 
