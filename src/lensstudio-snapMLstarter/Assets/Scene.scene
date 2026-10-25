@@ -5084,7 +5084,7 @@
   Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
-    Position: {x: -20.000000, y: 30.000000, z: -20.000000}
+    Position: {x: -20.000000, y: 40.000000, z: -20.000000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
     Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     HasSegmentScaleCompensation: false
@@ -5794,8 +5794,8 @@
       horizontalDistanceFromTarget: 0.100000
       reorientDuringTargetRotation: true
       flattenDuringTargetRotation: false
-      offset: !<Vec3> {x: 0.000000, y: -20.000000, z: -100.000000}
-      offsetWithoutDetectedObject: !<Vec3> {x: 0.000000, y: -20.000000, z: -100.000000}
+      offset: !<Vec3> {x: 0.000000, y: -25.000000, z: -100.000000}
+      offsetWithoutDetectedObject: !<Vec3> {x: 0.000000, y: -25.000000, z: -100.000000}
       offsetWithDetectedObject: !<Vec3> {x: 0.000000, y: 50.000000, z: -100.000000}
       lerpSpeed: !<float> 5.000000
   ScriptTypes:
