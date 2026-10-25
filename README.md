@@ -72,20 +72,50 @@ AisleVision is an Augmented Reality (AR) grocery assistant designed for Snap Spe
 ---
 
 ## Installation
-1. Clone the repository:
+#### Clone and Install Tools
+1. Install the tools listed under Prerequisites: Lens Studio, Python 3.10+, MySQL, Node.js, ngrok.
+2. Clone the repository:
    ```bash
    git clone https://github.com/SJSU-CMPE-195/group-project-team-ar.git
    ```
-2. Navigate to the project folder:
+   Navigate to the project folder:
    ```bash  
    cd group-project-team-ar
    ```
-3. Install and open Lens Studio.
-4. Pair Spectacles with the mobile app.
-5. Connect Spectacles to Lens Studio.
-    - **Wireless**: Ensure Spectacles and your computer are on the same WiFi network
-    - **Wired**: Connect Spectacles to your computer using a USB-C cable
-6. Open the `.esproj` file inside the `src/` folder.
+#### Database and Backend
+3. Start MySQL and set a password for your MySQL user.
+4. Create a database from the repo root:
+   ```bash  
+   mysql -u root -p < server/sql/init.sql
+   ```
+5. Create Python virtual environment and install packages:
+   ```bash
+   python3 -m venv server/.venv
+   ```
+   Install packages:
+   ```bash
+   server/.venv/bin/python -m pip install -r server/requirements.txt
+   ```
+6. Create server settings file and fill in values:
+   ```bash
+   cp server/.env.example server/.env
+   ```
+#### Web App
+7. Install web app packages:
+   ```bash
+   cd web
+   npm install
+   ```
+8. Optional: to point the web app at a different API address, copy `web/.env.example` to `web/.env` and set `VITE_API_URL`.
+
+#### Spectacles and Lens Studio
+9. Install and open Lens Studio.
+10. Pair Spectacles with the Spectacles mobile app.
+11. Connect Spectacles to Lens Studio.
+    - **Wireless**: Ensure Spectacles and your computer are on the same WiFi network.
+    - **Wired**: Connect Spectacles to your computer using a USB-C cable.
+12. Open `src/lensstudio-snapMLstarter/lensstudio-snapMLstarter.esproj`.
+13. For testing on Spectacles, install ngrok and add your authtoken once: `ngrok config add-authtoken <your-token>`.
 
 ---
 
