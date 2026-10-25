@@ -1,0 +1,44 @@
+- !<AssetImportMetadata/18d21ad5-0510-4a83-95b0-b9801d8fe119>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> b4d68292-5937-4964-b753-1b8c577f83e0
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> b4d68292-5937-4964-b753-1b8c577f83e0
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 43268da0-c87b-4611-8481-e0ecc9047a0f
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/43268da0-c87b-4611-8481-e0ecc9047a0f>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: e8a8ad26-1174-4447-8c63-f52f7a9d83d0
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    statusText: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - statusText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - '// @input Component.Text statusText {"hint":"Text component that shows which hands are tracked and pinching"}'
