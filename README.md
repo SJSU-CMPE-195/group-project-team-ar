@@ -119,13 +119,36 @@ AisleVision is an Augmented Reality (AR) grocery assistant designed for Snap Spe
 
 ---
 
-## Running the PoC
-1. Launch Lens Studio.
-2. Click File → Open project file `src/lensstudio-snapMLstarter/lensstudio-snapMLstarter.esproj`
-3. Power on and connect Spectacles to mobile app and Lens Studio.
-4. In Lens Studio, Click `Preview Lens`.
-5. Wait for the lens to load on the Spectacles.
-6. Look through the glasses to test object detection and checklist UI.
+## Running the Prototype
+1. Start MySQL server.
+2. Start API server:
+   ```bash
+   server/.venv/bin/python -m uvicorn server.main:app --host 0.0.0.0 --port 8000
+   ```
+   Check: (should return `{"ok":true,"database":"connected"}`)
+   ```bash
+   curl localhost:8000/health
+   ```
+3. Start web app:
+   ```bash
+   cd web
+   npm run dev
+   ```
+   Open `http://localhost:5173` and add a few grocery items.
+4. Start the tunnel (to run on Spectacles glasses, optional for Lens Studio preview):
+   ```bash
+   ngrok http 8000
+   ```
+5. Launch Lens Studio.
+6. Open the Lens.
+   - Click File → Open project file `src/lensstudio-snapMLstarter/lensstudio-snapMLstarter.esproj`.
+   - Select GroceryListText and set Api Url on GroceryListController to:
+       - Preview: `http://127.0.0.1:8000/api/lists/demo/items` (enable Allow Experimental API in Project Settings).
+       - Spectacles: `https://<your-ngrok-address>/api/lists/demo/items`
+7. Power on and connect Spectacles to mobile app and Lens Studio.
+8. In Lens Studio, Click `Preview Lens`.
+9. Wait for the lens to load on the Spectacles.
+10. Look through the glasses at the grocery list, point at a row, and pinch to check an item off. The website updates and changes made on the website appear on the glasses within ~5 seconds.
 
 ---
 
