@@ -29,7 +29,10 @@
     apiUrl: false
     groceryText: false
     internetModule: false
+    itemRowPrefab: false
     mockMode: false
+    rowSpacing: false
+    rowsParent: false
   ScriptTypesHidden:
     {}
   ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
@@ -43,6 +46,9 @@
       internetModule: !<reference.InternetModule> 00000000-0000-0000-0000-000000000000
       apiUrl: "http://127.0.0.1:8000/api/lists/demo/items"
       mockMode: false
+      itemRowPrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
+      rowsParent: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      rowSpacing: !<float> 3.000000
   ScriptTypes:
     -
       {}

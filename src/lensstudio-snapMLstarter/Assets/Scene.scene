@@ -345,7 +345,7 @@
     Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     HasSegmentScaleCompensation: false
   Children:
-    []
+    - !<own> 5ae8646e-d2db-4cb2-b89c-04be7ebc050e
   Components:
     - !<own> 32a4b56d-1df8-491a-a1af-74cdb79174ee
     - !<own> 92af2a1e-5a6a-4356-9f2d-16fc1c8ea7e6
@@ -2748,6 +2748,21 @@
     - !<own> 87220754-3cfc-40f9-ad30-72b63765e33a
   Components:
     - !<own> cd0a987b-b5d3-4814-a5d3-09445892c747
+- !<SceneObject/5ae8646e-d2db-4cb2-b89c-04be7ebc050e>
+  PrefabRemaps:
+    []
+  Name: GroceryRows
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: -6.000000, z: 0.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    []
 - !<SceneObject/5afb12ee-0c02-49d1-892d-9c11467ccf9e>
   PrefabRemaps:
     []
@@ -4557,6 +4572,9 @@
       internetModule: !<reference.InternetModule> 00000000-0000-0000-0000-000000000000
       apiUrl: "http://127.0.0.1:8000/api/lists/demo/items"
       mockMode: false
+      itemRowPrefab: !<reference.ObjectPrefab> a67f2f58-ff14-4bd7-b493-784b1262aae2
+      rowsParent: !<reference.SceneObject> 5ae8646e-d2db-4cb2-b89c-04be7ebc050e
+      rowSpacing: !<float> 4.000000
   ScriptTypes:
     "":
       {}
