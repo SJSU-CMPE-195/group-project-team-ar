@@ -19,10 +19,32 @@ AisleVision is an Augmented Reality (AR) grocery assistant designed for Snap Spe
 
 ---
 
-## Proof of Concept Scope
-This PoC demonstrates real-time object detection running on Spectacles using a YOLOv7-tiny model deployed through SnapML, along with a checklist user interface displayed directly in the AR view. At this stage, detected objects are presented as item labels in a list.
+## Prototype Scope
 
-The current PoC does not include backend or database integration, functional checklist syncing, indoor path planning, focus mode, and fully implemented 2D/3D bounding boxes around detected items in the AR environment.
+#### Works end to end:
+- **Real-time Object detection:**
+    -  YOLOv7-tiny runs on Spectacles through SnapML.
+    -  Detected objects are labeled with confidence score and bounding box in the AR view.
+- **Backend:**
+    - Connects to Lens Studio.
+    - A FastAPI server exposes the checklist as a REST API (`GET`/`POST` items, `PATCH` to check an item, `DELETE`).
+    - The Spectacles lens reads the checklist from the server over HTTPS (ngrok tunnel) and refreshes it every 5 seconds.
+- **Database:**
+  - Checklist items are stored in MySQL (`aislevision` database) so the list persists between sessions.
+- **Checklist:**
+  - The checklist is shown in the AR view as one row per item with a progress bar and percentage.
+  - User can pinch to check items off the checklist.
+- **Path Planning:**
+  - 2D store-map data collection and an A* pathfinding algorithm with unit tests (branch: `feature/2d-path-planning`).
+
+#### Incomplete/left for the Expo:
+- **Object detection and checklist:**
+  - Connect detection to the checklist: When the user picks up an item and their hand touches the item's bounding box, the item checks itself off the list automatically.
+  - Add more grocery items to detection by custom-training the model/adding second detection model.
+- **Path planning:**
+  - Integrate 2D path planning into the checklist so items are reordered based on location in the store.
+- **Optional:**
+  - Voice narration and 3D arrows for navigation.
 
 ---
 
