@@ -774,13 +774,12 @@
   Enabled: true
   ScriptAsset: !<reference> 33b8ff0f-4908-4414-8821-6b37f1775435
   ScriptInputsDefault:
-    useV2: true
     drawDebug: true
   ScriptTypesDefault:
     {}
   ScriptInputs:
     "":
-      useV2: true
+      useV2: false
       drawDebug: false
   ScriptTypes:
     "":
