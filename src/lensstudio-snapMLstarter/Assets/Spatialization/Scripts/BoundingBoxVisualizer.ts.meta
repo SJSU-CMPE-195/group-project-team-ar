@@ -28,6 +28,7 @@
   ScriptInputsHidden:
     boxDepth: false
     boxPrefab: false
+    cropTexture: false
     debugLogging: false
     maxBoxes: false
     mlSpatializer: false
@@ -46,6 +47,7 @@
   DefaultScriptInputs:
     - mlSpatializer: !<MappingBased.AssignableType> 00000000-0000-0000-0000-000000000000
       pinholeCapture: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+      cropTexture: !<reference.Texture> 00000000-0000-0000-0000-000000000000
       boxPrefab: !<reference.ObjectPrefab> 00000000-0000-0000-0000-000000000000
       maxBoxes: !<float> 5.000000
       boxDepth: !<float> 150.000000
@@ -59,10 +61,11 @@
   InputLines:
     - '// @input AssignableType mlSpatializer {"hint":"MLSpatializer that emits detection updates"}'
     - '// @input AssignableType_1 pinholeCapture {"hint":"PinholeCapture used to project detections into world space"}'
+    - '// @input Asset.Texture cropTexture {"hint":"Screen Crop Texture fed to the ML model, used to map detections back to the full camera frame"}'
     - '// @input Asset.ObjectPrefab boxPrefab {"hint":"Prefab with a DetectionContainer and ClosedPolyline (e.g. DetectionPrefab)"}'
     - '// @input float maxBoxes = 5 {"hint":"Maximum number of boxes to show at once", "widget":"slider", "min":1, "max":20, "step":1}'
     - '// @input float boxDepth = 150 {"hint":"Distance from the camera (cm) at which boxes are drawn"}'
     - '// @input float persistence = 0.3 {"hint":"Time in seconds to keep a box after its detection disappears", "widget":"slider", "min":0, "max":2, "step":0.05}'
-    - '// @input vec2 uvScale = "{1, 1}" {"hint":"Scale applied to detection UVs before projection (calibration)"}'
-    - '// @input vec2 uvOffset = "{0, 0}" {"hint":"Offset applied to detection UVs before projection (calibration)"}'
+    - '// @input vec2 uvScale = "{1, 1}" {"hint":"Scale applied to camera UVs before projection (fine calibration)"}'
+    - '// @input vec2 uvOffset = "{0, 0}" {"hint":"Offset applied to camera UVs before projection (fine calibration)"}'
     - '// @input bool debugLogging {"hint":"Log box placement to console"}'

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f1f5f9" />
+    <title>AisleVision — Grocery checklist</title>
+  </head>
+  <body class="app-body">
+    <header class="app-header">
+      <div class="app-header-inner">
+        <span class="app-brand">AisleVision</span>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <section class="app-card" aria-labelledby="pageTitle">
+        <div class="app-card-head">
+          <div>
+            <h1 class="app-title" id="pageTitle">Grocery list</h1>
+            <p class="app-subtitle" id="itemCount" aria-live="polite">Loading checklist…</p>
+          </div>
+        </div>
+
+        <div class="quick-pick-row">
+          <label class="visually-hidden" for="commonItemSelect">Pick an item</label>
+          <select id="commonItemSelect" class="common-item-select" title="Pick an item to fill the box below">
+            <option value="">Pick an item…</option>
+            <option value="Banana">Banana</option>
+            <option value="Cell phone">Cell phone</option>
+            <option value="Microwave">Microwave</option>
+            <option value="Orange">Orange</option>
+            <option value="Oven">Oven</option>
+            <option value="Refrigerator">Refrigerator</option>
+          </select>
+        </div>
+
+        <form class="add-row" id="addForm">
+          <label class="visually-hidden" for="itemInput">Grocery item name</label>
+          <input
+            type="text"
+            id="itemInput"
+            class="item-input"
+            placeholder="Add an item (e.g. Milk)"
+            autocomplete="off"
+            maxlength="255"
+            required
+          />
+          <button type="submit" class="btn-primary" id="addBtn">Add</button>
+        </form>
+
+        <p class="app-subtitle app-status" id="appStatus" role="status" aria-live="polite"></p>
+        <ul class="shopping-list" id="shoppingList" aria-label="Shopping list"></ul>
+
+        <div class="app-actions">
+          <button type="button" class="btn-secondary" id="clearCompletedBtn">
+            Remove completed
+          </button>
+          <button type="button" class="btn-secondary btn-strong" id="refreshBtn">
+            Refresh list
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
