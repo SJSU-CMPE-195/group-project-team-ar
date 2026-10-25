@@ -243,6 +243,18 @@
   color: var(--muted);
 }
 
+.item-aisle {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding: 3px 7px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #f8fafc;
+}
+
 .item-status-badge {
   font-size: 0.6875rem;
   font-weight: 600;
