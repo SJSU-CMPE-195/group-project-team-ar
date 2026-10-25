@@ -12,6 +12,16 @@ var lastChecklist = "";
 var rows = {};
 var rowOrder = [];
 var pendingIds = {};
+var progressWidgets = null;
+var completedCount = 0;
+var totalCount = 0;
+var lastDebugKey = "";
+var BAR_CORNER_RADIUS = 0.5;
+var BAR_TRACK_COLOR = new vec4(1, 1, 1, 0.25);
+var BAR_FILL_COLOR = new vec4(0.15, 0.65, 0.25, 0.6);
+var BAR_HEIGHT_FACTOR = 0.35;
+var BAR_TEXT_SCALE = 0.3;
+var BAR_GAP = 0.5;
 var mockItems = [
   { id: 1, name: "Milk", checked: false },
   { id: 2, name: "Eggs", checked: true },
@@ -19,11 +29,7 @@ var mockItems = [
 ];
 
 function displayMessage(message) {
-  var textComponent = script.groceryText;
-  if (!textComponent) {
-    var sceneObject = script.getSceneObject();
-    textComponent = sceneObject ? sceneObject.getComponent("Text") : null;
-  }
+  var textComponent = getGroceryText();
   if (!textComponent) {
     print("GroceryListController: assign the Grocery Text input.");
     return;
@@ -47,18 +53,89 @@ function getInternetModule() {
 }
 
 function formatHeader(items) {
-  var completed = items.filter(function(item) { return item.checked === true; }).length;
   var lines = ["Grocery List"];
   if (items.length === 0) {
     lines.push("No items yet.");
   }
   lines.push("");
   lines.push("Progress:");
-  lines.push(completed + "/" + items.length + " completed");
   return lines.join("\n");
 }
 
+function getGroceryText() {
+  var textComponent = script.groceryText;
+  if (!textComponent) {
+    var sceneObject = script.getSceneObject();
+    textComponent = sceneObject ? sceneObject.getComponent("Text") : null;
+  }
+  return textComponent;
+}
+
+function createHeaderText(name, baseText) {
+  var textObject = global.scene.createSceneObject(name);
+  textObject.setParent(script.getSceneObject());
+  var text = textObject.createComponent("Component.Text");
+  text.size = baseText.size;
+  text.depthTest = baseText.depthTest;
+  text.horizontalAlignment = baseText.horizontalAlignment;
+  text.verticalAlignment = baseText.verticalAlignment;
+  text.textFill.color = baseText.textFill.color;
+  if (baseText.font) {
+    text.font = baseText.font;
+  }
+  text.renderOrder = baseText.renderOrder;
+  return text;
+}
+
+function styleBar(text, color) {
+  // A real glyph with a clear fill: the background only draws when the text has something to lay out
+  text.text = "I";
+  text.textFill.color = new vec4(0, 0, 0, 0);
+  text.backgroundSettings.margins = Rect.create(0, 0, 0, 0);
+  text.backgroundSettings.enabled = true;
+  text.backgroundSettings.cornerRadius = BAR_CORNER_RADIUS;
+  text.backgroundSettings.fill.color = color;
+}
+
+// Progress bar: a translucent track, a green fill, and the "n/m completed" text under it
+function ensureProgressWidgets() {
+  if (progressWidgets) {
+    return progressWidgets;
+  }
+  var baseText = getGroceryText();
+  if (!baseText) {
+    return null;
+  }
+  progressWidgets = {
+    count: createHeaderText("ProgressCount", baseText),
+    track: createHeaderText("ProgressTrack", baseText),
+    fill: createHeaderText("ProgressFill", baseText),
+    baseWidth: 0,
+    baseHeight: 0,
+    framesUntilMeasured: 3
+  };
+  styleBar(progressWidgets.track, BAR_TRACK_COLOR);
+  styleBar(progressWidgets.fill, BAR_FILL_COLOR);
+  // A small font keeps the bar's glyph short, so the bar can be thin
+  progressWidgets.track.size = baseText.size * BAR_TEXT_SCALE;
+  progressWidgets.fill.size = baseText.size * BAR_TEXT_SCALE;
+  progressWidgets.track.renderOrder = baseText.renderOrder + 1;
+  progressWidgets.fill.renderOrder = baseText.renderOrder + 2;
+  return progressWidgets;
+}
+
+function setProgress(items) {
+  completedCount = items.filter(function(item) { return item.checked === true; }).length;
+  totalCount = items.length;
+  var widgets = ensureProgressWidgets();
+  if (widgets) {
+    var percent = totalCount > 0 ? Math.round(completedCount / totalCount * 100) : 0;
+    widgets.count.text = completedCount + "/" + totalCount + " completed (" + percent + "%)";
+  }
+}
+
 function updateHeader(items) {
+  setProgress(items);
   lastChecklist = formatHeader(items);
   displayMessage(lastChecklist);
 }
@@ -92,21 +169,73 @@ function layoutRows() {
   });
 }
 
-// Keeps the first row just under the header text, however many lines it has
-function anchorRowsToHeader() {
-  var textComponent = script.groceryText;
-  if (!textComponent || !script.rowsParent) {
+// Stacks header text, progress bar, count text and rows top to bottom, however tall each one is
+function layoutHeader() {
+  var baseText = getGroceryText();
+  var widgets = progressWidgets;
+  if (!baseText || !widgets || !script.rowsParent) {
     return;
   }
-  var bottom = textComponent.worldSpaceRect.bottom;
-  var position = script.rowsParent.getTransform().getLocalPosition();
-  var anchorY = bottom + script.rowSpacing * 0.25;
-  if (Math.abs(position.y - anchorY) > 0.01) {
-    script.rowsParent.getTransform().setLocalPosition(new vec3(position.x, anchorY, position.z));
+
+  // Wait a few frames with zero margins so the layout size of the bar text can be read
+  if (widgets.framesUntilMeasured > 0) {
+    widgets.framesUntilMeasured--;
+    if (widgets.framesUntilMeasured === 0) {
+      var baseRect = widgets.track.getBoundingBox();
+      widgets.baseWidth = baseRect.right - baseRect.left;
+      widgets.baseHeight = baseRect.top - baseRect.bottom;
+    }
+    return;
+  }
+
+  var countRect = widgets.count.getBoundingBox();
+  var countWidth = countRect.right - countRect.left;
+  var countCenterX = (countRect.right + countRect.left) / 2;
+  // The text's layout box gives the line height; the bounding box only covers the glyphs
+  var layoutRect = widgets.count.worldSpaceRect;
+  var countHeight = layoutRect.top - layoutRect.bottom;
+  var barHeight = countHeight * BAR_HEIGHT_FACTOR;
+
+  var trackY = baseText.worldSpaceRect.bottom - BAR_GAP - barHeight / 2;
+  var countY = trackY - barHeight / 2 - BAR_GAP - countHeight / 2;
+  var rowsY = countY - countHeight / 2 + script.rowSpacing * 0.25;
+
+  sizeBar(countWidth, barHeight, widgets.track);
+  widgets.track.getSceneObject().getTransform().setLocalPosition(new vec3(countCenterX, trackY, 0));
+
+  var fraction = totalCount > 0 ? completedCount / totalCount : 0;
+  var fillWidth = countWidth * fraction;
+  var debugKey = [countWidth, countHeight, widgets.baseWidth, widgets.baseHeight, fillWidth].join(",");
+  if (debugKey !== lastDebugKey) {
+    lastDebugKey = debugKey;
+    print("GroceryListController bar: countW=" + countWidth + " countH=" + countHeight +
+      " baseW=" + widgets.baseWidth + " baseH=" + widgets.baseHeight +
+      " fillW=" + fillWidth + " done=" + completedCount + "/" + totalCount);
+  }
+  widgets.fill.enabled = fillWidth > 0;
+  if (fillWidth > 0) {
+    var actualWidth = sizeBar(fillWidth, barHeight, widgets.fill);
+    widgets.fill.getSceneObject().getTransform().setLocalPosition(new vec3(countCenterX - countWidth / 2 + actualWidth / 2, trackY, 0));
+  }
+
+  widgets.count.getSceneObject().getTransform().setLocalPosition(new vec3(0, countY, 0));
+
+  var rowsTransform = script.rowsParent.getTransform();
+  var position = rowsTransform.getLocalPosition();
+  if (Math.abs(position.y - rowsY) > 0.01) {
+    rowsTransform.setLocalPosition(new vec3(position.x, rowsY, position.z));
   }
 }
 
-script.createEvent("UpdateEvent").bind(anchorRowsToHeader);
+// The bar text has no margins when measured, so its own size is the base the margins grow from
+function sizeBar(width, height, text) {
+  var marginX = Math.max(0, (width - progressWidgets.baseWidth) / 2);
+  var marginY = Math.max(0, (height - progressWidgets.baseHeight) / 2);
+  text.backgroundSettings.margins = Rect.create(marginX, marginX, marginY, marginY);
+  return Math.max(width, progressWidgets.baseWidth);
+}
+
+script.createEvent("UpdateEvent").bind(layoutHeader);
 
 function syncRows(items) {
   var incoming = {};
