@@ -53,6 +53,10 @@ export class MLSpatializer extends BaseScriptComponent {
   enableAllClasses: boolean = true
 
   @input
+  @hint("Only keep detections with these labels (e.g. bottle, banana). Leave empty to keep every class")
+  allowedLabels: string[] = []
+
+  @input
   @hint("Enable callbacks for detection updates")
   enableCallbacks: boolean = false
 
@@ -202,7 +206,7 @@ export class MLSpatializer extends BaseScriptComponent {
       const detections = this.yoloProcessor.parseYolo7Outputs(this.outputs)
 
       // Apply the same filtering used internally
-      return this.filterDetectionsByCenter(detections)
+      return this.filterDetectionsByLabel(this.filterDetectionsByCenter(detections))
     } catch (e) {
       if (this.debugLogging) {
         this.logMessage("Error getting latest detections: " + e)
@@ -278,7 +282,7 @@ export class MLSpatializer extends BaseScriptComponent {
       const detections = this.yoloProcessor.parseYolo7Outputs(this.outputs)
 
       // Filter detections based on center threshold
-      const filteredDetections = this.filterDetectionsByCenter(detections)
+      const filteredDetections = this.filterDetectionsByLabel(this.filterDetectionsByCenter(detections))
 
       this.onRunningFinished(filteredDetections)
     } catch (e) {
@@ -287,6 +291,19 @@ export class MLSpatializer extends BaseScriptComponent {
     } finally {
       this.isRunning = false
     }
+  }
+
+  /**
+   * Keep only detections whose label is in allowedLabels (case-insensitive)
+   * An empty allowedLabels list keeps every detection
+   */
+  private filterDetectionsByLabel(detections: Detection[]): Detection[] {
+    if (!this.allowedLabels || this.allowedLabels.length === 0) {
+      return detections
+    }
+
+    const allowed = this.allowedLabels.map((label) => label.trim().toLowerCase())
+    return detections.filter((detection) => allowed.indexOf(String(detection.label).toLowerCase()) !== -1)
   }
 
   /**
