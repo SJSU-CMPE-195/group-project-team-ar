@@ -155,16 +155,25 @@ AisleVision is an Augmented Reality (AR) grocery assistant designed for Snap Spe
 
 ## Testing
 
-The API integration tests run without Spectacles hardware. Make sure MySQL is
-running and `server\.env` contains your local database credentials. The API
-creates its tables when it starts.
+The API integration tests run without Spectacles hardware. From the repository
+root, start MySQL, create the `aislevision` database, and prepare the backend:
+
+```powershell
+Get-Content .\server\sql\init.sql | mysql -u root -p
+if (-not (Test-Path .\server\.env)) { Copy-Item .\server\.env.example .\server\.env }
+notepad .\server\.env
+python -m venv server\.venv
+.\server\.venv\Scripts\python.exe -m pip install -r .\server\requirements.txt
+```
+
+Set your local MySQL credentials in `server\.env`; do not commit that file. The
+API creates its tables when it starts.
 
 In the first PowerShell window, from the repository root, start the FastAPI
 backend:
 
 ```powershell
-.\server\.venv\Scripts\Activate.ps1
-python -m uvicorn server.main:app --reload --host 0.0.0.0 --port 8000
+.\server\.venv\Scripts\python.exe -m uvicorn server.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 In a second PowerShell window at the repository root, run:
