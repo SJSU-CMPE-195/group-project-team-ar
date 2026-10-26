@@ -100,6 +100,56 @@ The current PoC does not include backend or database integration, functional che
 
 ---
 
+## Backend API tests (no Spectacles required)
+
+Testers can exercise the Node/Express API without Spectacles hardware. They need
+Node.js, MySQL Server, and a local `aislevision` database.
+
+1. Start the installed MySQL Windows service from PowerShell. Replace `MySQL97`
+   with the service name installed on your machine:
+
+   ```powershell
+   Get-Service | Where-Object {$_.Name -like "MySQL*"}
+   Start-Service -Name MySQL97
+   ```
+
+2. If needed, open `server\mysql\workbench_setup.sql` in MySQL Workbench and run
+   it against the local MySQL server. Set the existing MySQL credentials in
+   `server\.env`, using `server\.env.example` as a template. Do not commit
+   `server\.env`.
+3. In the first PowerShell window, start the API:
+
+   ```powershell
+   Set-Location server
+   npm install
+   npm run dev
+   ```
+
+4. In a second PowerShell window at the repository root, run the API test
+   script:
+
+   ```powershell
+   npm --prefix server run test:api
+   ```
+
+   The test checks the MySQL-backed health route, lists items, creates a
+   uniquely named temporary grocery item, verifies it appears in the list,
+   checks and unchecks it, then deletes it and confirms it is gone. Existing
+   grocery items are not cleared. A successful run prints `All 11 API checks
+   passed.`
+
+The test script also accepts a non-default API URL:
+
+```powershell
+$env:API_BASE_URL = "http://localhost:3000"
+npm --prefix server run test:api
+```
+
+The API server must remain running in the first window while tests execute.
+The web page is available at `http://localhost:3000/app.html`.
+
+---
+
 ## What's Next (195B)
 - Object Detection:
   - Add stable AR bounding boxes for detected products
