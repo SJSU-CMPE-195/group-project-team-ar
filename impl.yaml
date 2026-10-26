@@ -1,0 +1,39 @@
+project_name: "AisleVision"
+project_type: "hybrid"
+
+impl_claim: "The FastAPI backend stores grocery checklist items in MySQL and exposes them to the web app and Lens Studio project for listing, adding, checking, and deleting items."
+
+languages: ["python", "javascript", "typescript"]
+hardware_required: true
+
+setup:
+  - "python -m venv server/.venv"
+  - "server/.venv/bin/python -m pip install -r server/requirements.txt"
+  - "npm ci --prefix web"
+  - "mysql -u root -p < server/sql/init.sql"
+  - "test -f server/.env || cp server/.env.example server/.env"
+
+build:
+  - "server/.venv/bin/python -m compileall -q server"
+  - "npm --prefix web run build"
+
+test:
+  - "pwsh -NoProfile -ExecutionPolicy Bypass -File tests/test-api.ps1"
+
+run:
+  - "server/.venv/bin/python -m uvicorn server.main:app --host 0.0.0.0 --port 8000"
+  - "npm --prefix web run dev"
+
+mock_mode:
+  available: true
+  commands:
+    - "pwsh -NoProfile -ExecutionPolicy Bypass -File tests/test-api.ps1"
+
+demo:
+  video: "https://drive.google.com/file/d/1zuYUwf4mVuQKaxN_3KR-a3IoUTkmXzV9/view?usp=sharing"
+  screenshots:
+    - "assets/images/prototype-architecture-diagram.png"
+    - "assets/images/prototype-checklist-initial.png"
+    - "assets/images/prototype-checklist-completed.png"
+
+notes: "The hardware-free mock mode tests the API without Spectacles, but requires the FastAPI server, a running MySQL server with the aislevision database, and PowerShell 7 (pwsh). Set MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, and MYSQL_DATABASE in server/.env; never commit credentials. The web app uses VITE_API_URL from web/.env.example when configured. Full AR testing additionally requires Lens Studio and the tracked project at src/lensstudio-snapMLstarter/lensstudio-snapMLstarter.esproj; connected Spectacles are needed to test on-device. An HTTPS tunnel such as ngrok is needed for Spectacles to reach a locally hosted API."
