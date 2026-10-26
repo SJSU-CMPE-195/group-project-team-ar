@@ -11,6 +11,9 @@ const AISLES_BY_ITEM = {
   fork: 'E73',
   scissors: 'A23',
   'potted plant': 'E28',
+  keyboard: 'D36',
+  cup: 'E67',
+  microwave: 'D74',
 };
 
 function aisleForItem(name) {

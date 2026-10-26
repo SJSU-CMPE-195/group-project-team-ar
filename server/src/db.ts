@@ -15,6 +15,9 @@ const AISLES_BY_ITEM: Record<string, string> = {
   fork: 'E73',
   scissors: 'A23',
   'potted plant': 'E28',
+  keyboard: 'D36',
+  cup: 'E67',
+  microwave: 'D74',
 };
 
 function aisleForItem(name: string): string | null {

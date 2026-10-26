@@ -28,9 +28,12 @@ BEGIN
     WHEN 'fork' THEN 'E73'
     WHEN 'scissors' THEN 'A23'
     WHEN 'potted plant' THEN 'E28'
+    WHEN 'keyboard' THEN 'D36'
+    WHEN 'cup' THEN 'E67'
+    WHEN 'microwave' THEN 'D74'
     ELSE aisle
   END
-  WHERE LOWER(TRIM(name)) IN ('banana', 'bottle', 'fork', 'scissors', 'potted plant');
+  WHERE LOWER(TRIM(name)) IN ('banana', 'bottle', 'fork', 'scissors', 'potted plant', 'keyboard', 'cup', 'microwave');
 END $$
 
 CALL migrate_add_aisle_column() $$
