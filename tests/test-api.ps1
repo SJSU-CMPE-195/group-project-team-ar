@@ -24,12 +24,22 @@ function Assert-Equal {
 }
 
 function Get-ListItems {
+  param([switch]$VerifyShape)
+
   if ($script:apiMode -eq "fastapi") {
-    $response = Invoke-RestMethod "$script:BaseUrl/api/lists/demo/items" -TimeoutSec 10
-    return @($response.items)
+    $response = Invoke-WebRequest "$script:BaseUrl/api/lists/demo/items" -UseBasicParsing -TimeoutSec 10
+    $body = ConvertFrom-Json -InputObject $response.Content
+    if ($VerifyShape) {
+      Assert-Equal "List items endpoint returns an items array" ($body.items -is [array]) $true
+    }
+    return @($body.items)
   }
 
-  return @(Invoke-RestMethod "$script:BaseUrl/api/items" -TimeoutSec 10)
+  $response = Invoke-WebRequest "$script:BaseUrl/api/items" -UseBasicParsing -TimeoutSec 10
+  if ($VerifyShape) {
+    Assert-Equal "List items endpoint returns an array" ($response.Content.TrimStart().StartsWith("[")) $true
+  }
+  return @($response.Content | ConvertFrom-Json)
 }
 
 if (-not $BaseUrl) {
@@ -84,8 +94,7 @@ try {
     Assert-Equal "Health reports MySQL" $health.db "mysql"
   }
 
-  $before = @(Get-ListItems)
-  Assert-Equal "List items endpoint returns an array" ($before -is [array]) $true
+  $before = @(Get-ListItems -VerifyShape)
 
   if ($apiMode -eq "fastapi") {
     $created = Invoke-RestMethod "$BaseUrl/api/lists/demo/items" `
