@@ -32,8 +32,15 @@ mock_mode:
 demo:
   video: "https://drive.google.com/file/d/1zuYUwf4mVuQKaxN_3KR-a3IoUTkmXzV9/view?usp=sharing"
   screenshots:
-    - "assets/images/prototype-architecture-diagram.png"
+    - "assets/images/prototype-object-detection-bounding-box.png"
+    - "assets/images/prototype-object-detection-logger.png"
     - "assets/images/prototype-checklist-initial.png"
+    - "assets/images/prototype-checklist-in-progress.png"
     - "assets/images/prototype-checklist-completed.png"
+    - "assets/images/prototype-hand-gesture-text-not-detected.png"
+    - "assets/images/prototype-hand-gesture-text-detected.png"
+    - "assets/images/prototype-hand-gesture-text-pinch.png"
+    - "assets/images/prototype-hand-gesture-default.png"
+    - "assets/images/prototype-hand-gesture-pinch.png"
 
 notes: "The hardware-free mock mode tests the API without Spectacles, but requires the FastAPI server, a running MySQL server with the aislevision database, and PowerShell 7 (pwsh). Set MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, and MYSQL_DATABASE in server/.env; never commit credentials. The web app uses VITE_API_URL from web/.env.example when configured. Full AR testing additionally requires Lens Studio and the tracked project at src/lensstudio-snapMLstarter/lensstudio-snapMLstarter.esproj; connected Spectacles are needed to test on-device. An HTTPS tunnel such as ngrok is needed for Spectacles to reach a locally hosted API."
