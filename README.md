@@ -40,11 +40,11 @@ AisleVision is an Augmented Reality (AR) grocery assistant designed for Snap Spe
 #### Incomplete/left for the Expo:
 - **Object detection and checklist:**
   - Connect detection to the checklist: When the user picks up an item and their hand touches the item's bounding box, the item checks itself off the list automatically.
-  - Add more grocery items to detection by custom-training the model/adding second detection model.
 - **Path planning:**
   - Integrate 2D path planning into the checklist so items are reordered based on location in the store.
 - **Optional:**
   - Voice narration and 3D arrows for navigation.
+  - Add more grocery items to detection by custom-training the model/adding second detection model.
 
 ---
 
