@@ -126,7 +126,7 @@ Node.js, MySQL Server, and a local `aislevision` database.
    ```
 
 4. In a second PowerShell window at the repository root, run the API test
-   script:
+   script at `tests\test-api.ps1`:
 
    ```powershell
    npm --prefix server run test:api
