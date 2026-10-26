@@ -34,6 +34,7 @@ AisleVision is an Augmented Reality (AR) grocery assistant designed for Snap Spe
 - **Checklist:**
   - The checklist is shown in the AR view as one row per item with a progress bar and percentage.
   - User can pinch to check items off the checklist.
+  - The aisle number of the checklist is displayed.
 - **Path Planning:**
   - 2D store-map data collection and an A* pathfinding algorithm with unit tests (branch: `feature/2d-path-planning`).
 
