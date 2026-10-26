@@ -154,22 +154,107 @@ AisleVision is an Augmented Reality (AR) grocery assistant designed for Snap Spe
 
 ## Demo
 
-**Video:**
+#### Video:
+[AisleVision Prototype Demo Video](https://drive.google.com/file/d/1zuYUwf4mVuQKaxN_3KR-a3IoUTkmXzV9/view?usp=sharing)
 
-- [AisleVision Prototype Demo Video](https://drive.google.com/file/d/1zuYUwf4mVuQKaxN_3KR-a3IoUTkmXzV9/view?usp=sharing)
 
+#### Screenshots:
 
-**Screenshots**
+1. Object Detection:
+<table>
+  <tr>
+    <td align="center">
+      Figure 1. Detected object with bounding box
+    </td>
+    <td align="center">
+      Figure 2. Object detection logger
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="./assets/images/prototype-object-detection-bounding-box.png" width="60%">
+    </td>
+    <td align="center">
+      <img src="./assets/images/prototype-object-detection-logger.png" width="80%">
+    </td>
+  </tr>
+</table>
 
-- Object Detection:
-  
-  <img src="./assets/images/object-detection-PoC-refrigerator.jpg" width="30%">
-  <img src="./assets/images/object-detection-PoC-oven.jpg" width="30%">
-  <img src="./assets/images/object-detection-PoC-microwave.jpg" width="30%">
+2. Checklist:
+<table>
+  <tr>
+    <td align="center">
+      Figure 3. Initial
+    </td>
+    <td align="center">
+      Figure 4. In Progress
+    </td>
+    <td align="center">
+      Figure 5. Completed
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="./assets/images/prototype-checklist-initial.png" width="60%">
+    </td>
+    <td align="center">
+      <img src="./assets/images/prototype-checklist-in-progress.png" width="90%">
+    </td>
+    <td align="center">
+      <img src="./assets/images/prototype-checklist-completed.png" width="60%">
+    </td>
+  </tr>
+</table>
 
-- Integration of checklist UI + object detection:
+3. Hand Gesture Detection and Control:
 
-  <img src="./assets/images/integrated-object-detection-checklist.jpg" width="40%">
+- Text indicator:
+
+<table>
+  <tr>
+    <td align="center">
+      Figure 6. Hands Not Detected
+    </td>
+    <td align="center">
+      Figure 7. Right Hand Detected
+    </td>
+    <td align="center">
+      Figure 8. Right Hand Pinch Detected
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="./assets/images/prototype-hand-gesture-text-not-detected.png" width="95%">
+    </td>
+    <td align="center">
+      <img src="./assets/images/prototype-hand-gesture-text-detected.png" width="75%">
+    </td>
+    <td align="center">
+      <img src="./assets/images/prototype-hand-gesture-text-pinch.png" width="90%">
+    </td>
+  </tr>
+</table>
+
+- Cursor:
+<table>
+  <tr>
+    <td align="center">
+      Figure 9. Default cursor
+    </td>
+    <td align="center">
+      Figure 10. Pinch cursor
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="./assets/images/prototype-hand-gesture-default.png" width="60%">
+    </td>
+    <td align="center">
+      <img src="./assets/images/prototype-hand-gesture-pinch.png" width="60%">
+    </td>
+  </tr>
+</table>
+
 
 ---
 
