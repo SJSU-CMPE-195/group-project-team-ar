@@ -19,6 +19,7 @@ export class PinchRow extends BaseScriptComponent {
   itemName: string = "Item"
 
   checked: boolean = false
+  aisle: string = ""
   itemId: number = -1
   onToggle: (row: PinchRow) => void = null
 
@@ -44,10 +45,11 @@ export class PinchRow extends BaseScriptComponent {
     this.createEvent("UpdateEvent").bind(() => this.updateCollider())
   }
 
-  setItem(id: number, name: string, checked: boolean): void {
+  setItem(id: number, name: string, checked: boolean, aisle: string = ""): void {
     this.itemId = id
     this.itemName = name
     this.checked = checked
+    this.aisle = aisle
     this.refresh()
   }
 
@@ -88,13 +90,18 @@ export class PinchRow extends BaseScriptComponent {
     background.margins = Rect.create(MARGIN_X, MARGIN_X, MARGIN_Y, MARGIN_Y)
   }
 
+  private displayText(): string {
+    return this.aisle ? `${this.itemName}  ·  Aisle ${this.aisle}` : this.itemName
+  }
+
   private refresh(): void {
+    const display = this.displayText()
     if (this.labelText) {
-      this.labelText.text = this.itemName
+      this.labelText.text = display
       this.labelText.backgroundSettings.fill.color = this.checked ? CHECKED_COLOR : UNCHECKED_COLOR
     }
     if (this.strikeText) {
-      const count = Math.max(2, Math.ceil(this.itemName.length * STRIKE_CHARS_PER_LETTER))
+      const count = Math.max(2, Math.ceil(display.length * STRIKE_CHARS_PER_LETTER))
       this.strikeText.text = "—".repeat(count)
       this.strikeText.enabled = this.checked
     }
