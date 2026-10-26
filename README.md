@@ -154,10 +154,35 @@ AisleVision is an Augmented Reality (AR) grocery assistant designed for Snap Spe
 ---
 
 ## Testing
-**Steps to run tests**:
 
+The API integration tests run without Spectacles hardware. Make sure MySQL is
+running and `server\.env` contains your local database credentials. The API
+creates its tables when it starts.
 
-**What the tests cover:**
+In the first PowerShell window, from the repository root, start the FastAPI
+backend:
+
+```powershell
+.\server\.venv\Scripts\Activate.ps1
+python -m uvicorn server.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+In a second PowerShell window at the repository root, run:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tests\test-api.ps1
+```
+
+The script automatically checks the FastAPI backend on port 8000, or the
+Express backend on port 3000 if that is the server running. It verifies health,
+item listing, create, check/uncheck, and delete using a uniquely named temporary
+item, then removes it. Existing grocery items are not cleared. To test a server
+at a different URL, set `API_BASE_URL` before running the script:
+
+```powershell
+$env:API_BASE_URL = "http://localhost:8000"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tests\test-api.ps1
+```
 
 ---
 ## Demo
