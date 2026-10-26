@@ -129,21 +129,25 @@ Node.js, MySQL Server, and a local `aislevision` database.
    script at `tests\test-api.ps1`:
 
    ```powershell
-   npm --prefix server run test:api
+   powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tests\test-api.ps1
    ```
 
    The test checks the MySQL-backed health route, lists items, creates a
    uniquely named temporary grocery item, verifies it appears in the list,
    checks and unchecks it, then deletes it and confirms it is gone. Existing
    grocery items are not cleared. A successful run prints `All 11 API checks
-   passed.`
+   passed (express).`
 
-The test script also accepts a non-default API URL:
+The shared test script also detects the FastAPI backend on port 8000, and
+accepts a non-default API URL:
 
 ```powershell
 $env:API_BASE_URL = "http://localhost:3000"
-npm --prefix server run test:api
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tests\test-api.ps1
 ```
+
+The `npm --prefix server run test:api` command is also available as a shorthand
+for running the script from the server package.
 
 The API server must remain running in the first window while tests execute.
 The web page is available at `http://localhost:3000/app.html`.
