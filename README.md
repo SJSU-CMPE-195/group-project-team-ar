@@ -153,6 +153,13 @@ AisleVision is an Augmented Reality (AR) grocery assistant designed for Snap Spe
 
 ---
 
+## Testing
+**Steps to run tests**:
+
+
+**What the tests cover:**
+
+---
 ## Demo
 
 #### Video:
