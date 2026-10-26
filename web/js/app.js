@@ -5,10 +5,26 @@ let items = [];
 let nextId = 1;
 let apiOnline = false;
 
+const AISLES_BY_ITEM = {
+  banana: 'B9',
+  bottle: 'B68',
+  fork: 'E73',
+  scissors: 'A23',
+  'potted plant': 'E28',
+  keyboard: 'D36',
+  cup: 'E67',
+  microwave: 'D74',
+};
+
+function aisleForItem(name) {
+  return AISLES_BY_ITEM[name.trim().toLowerCase()] || null;
+}
+
 function serverRowToClient(row) {
   return {
     id: row.id,
     name: row.name,
+    aisle: row.aisle ?? aisleForItem(row.name),
     checked: row.status === 'picked_up',
     detected: false,
   };
@@ -33,7 +49,10 @@ async function loadFromServer() {
 }
 
 function loadLocalOnly() {
-  items = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+  items = JSON.parse(localStorage.getItem(LS_KEY) || '[]').map((item) => ({
+    ...item,
+    aisle: item.aisle ?? aisleForItem(item.name),
+  }));
   nextId = parseInt(localStorage.getItem(LS_NEXT) || '1', 10);
 }
 
@@ -42,6 +61,7 @@ function seedDemoItems() {
     items.push({
       id: nextId++,
       name,
+      aisle: aisleForItem(name),
       checked: false,
       detected: false,
     });
@@ -58,9 +78,11 @@ function renderList() {
     li.dataset.id = item.id;
     const statusLabel = item.checked ? 'Picked up' : 'Not picked up';
     const statusClass = item.checked ? 'fulfilled' : 'pending';
+    const aisleLabel = item.aisle || 'N/A';
     li.innerHTML = `
       <div class="item-check ${item.checked ? 'checked' : ''}" data-action="toggle" data-id="${item.id}"></div>
       <span class="item-name ${item.checked ? 'strikethrough' : ''}">${item.name}</span>
+      <span class="item-aisle">Aisle ${aisleLabel}</span>
       <span class="item-status-badge ${statusClass}">${statusLabel}</span>
       <button type="button" class="item-delete" data-action="delete" data-id="${item.id}" title="Remove">✕</button>
     `;
@@ -107,7 +129,7 @@ async function addItem() {
     }
   }
 
-  items.push({ id: nextId++, name, checked: false, detected: false });
+  items.push({ id: nextId++, name, aisle: aisleForItem(name), checked: false, detected: false });
   localStorage.setItem(LS_NEXT, String(nextId));
   input.value = '';
   renderList();

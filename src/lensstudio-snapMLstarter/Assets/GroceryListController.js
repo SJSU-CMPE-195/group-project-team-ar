@@ -1,6 +1,6 @@
 //@input Component.Text groceryText
 //@input Asset.InternetModule internetModule
-//@input string apiUrl = "http://127.0.0.1:8000/api/lists/demo/items"
+//@input string apiUrl = "http://127.0.0.1:3000/api/items"
 //@input bool mockMode = false
 //@input Asset.ObjectPrefab itemRowPrefab
 //@input SceneObject rowsParent
@@ -258,7 +258,7 @@ function syncRows(items) {
     }
     // A row with a PATCH in flight keeps its local value so a poll cannot flip it back
     var checked = pendingIds[item.id] ? row.pinchRow.checked : item.checked === true;
-    row.pinchRow.setItem(item.id, item.name, checked);
+    row.pinchRow.setItem(item.id, item.name, checked, item.aisle || "N/A");
     return item.id;
   });
   layoutRows();
@@ -277,7 +277,7 @@ function renderChecklist(items) {
 }
 
 function itemUrl(id) {
-  return script.apiUrl.replace(/\/lists\/[^\/]+\/items\/?$/, "/items/") + id;
+  return script.apiUrl.replace(/\/items\/?$/, "/items/") + id;
 }
 
 async function onRowToggled(pinchRow) {
@@ -297,7 +297,7 @@ async function onRowToggled(pinchRow) {
       var response = await getInternetModule().fetch(itemUrl(id), {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ checked: newChecked })
+        body: JSON.stringify({ status: newChecked ? "picked_up" : "not_picked_up" })
       });
       print("GroceryListController PATCH status: " + response.status);
       if (response.status < 200 || response.status >= 300) {
@@ -346,10 +346,12 @@ async function pollChecklist() {
     }
 
     var data = await response.json();
-    if (!Array.isArray(data.items)) {
-      throw new Error("API response is missing the items array");
+    if (!Array.isArray(data)) {
+      throw new Error("API response is not an items array");
     }
-    renderChecklist(data.items);
+    renderChecklist(data.map(function(row) {
+      return { id: row.id, name: row.name, aisle: row.aisle, checked: row.status === "picked_up" };
+    }));
   } catch (error) {
     var details = error && error.message ? error.message : String(error);
     print("GroceryListController request error: " + details);

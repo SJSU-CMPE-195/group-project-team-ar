@@ -10,6 +10,7 @@ USE aislevision;
 CREATE TABLE IF NOT EXISTS grocery_items (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
+  aisle VARCHAR(16) NULL,
   status ENUM('not_picked_up', 'picked_up') NOT NULL DEFAULT 'not_picked_up',
   PRIMARY KEY (id),
   KEY idx_grocery_items_status (status)
