@@ -1,5 +1,8 @@
 # AisleVision
 
+For automatic shopping order in the Node backend and website, see
+[checklist ordering and local testing](docs/checklist-ordering.md).
+
 ## Team
 
 | Name | GitHub | Email |

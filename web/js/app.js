@@ -119,13 +119,13 @@ async function addItem() {
         body: JSON.stringify({ name }),
       });
       if (!r.ok) throw new Error('post failed');
-      const row = await r.json();
-      items.push(serverRowToClient(row));
+      await loadFromServer();
       input.value = '';
       renderList();
       return;
     } catch {
-      apiOnline = false;
+      alert('Could not add or refresh the checklist. Refresh before retrying.');
+      return;
     }
   }
 
@@ -186,8 +186,12 @@ async function toggleCheck(id) {
         body: JSON.stringify({ status }),
       });
       if (!r.ok) throw new Error('patch failed');
+      await loadFromServer();
+      renderList();
+      return;
     } catch {
-      /* keep UI in sync locally even if request fails */
+      alert('Could not update or refresh the checklist. Refresh before retrying.');
+      return;
     }
   }
 
@@ -198,9 +202,14 @@ async function toggleCheck(id) {
 async function deleteItem(id) {
   if (apiOnline) {
     try {
-      await fetch(`/api/items/${id}`, { method: 'DELETE' });
+      const r = await fetch(`/api/items/${id}`, { method: 'DELETE' });
+      if (!r.ok) throw new Error('delete failed');
+      await loadFromServer();
+      renderList();
+      return;
     } catch {
-      /* still remove from UI */
+      alert('Could not delete or refresh the checklist. Refresh before retrying.');
+      return;
     }
   }
   items = items.filter((i) => i.id !== id);
@@ -210,13 +219,16 @@ async function deleteItem(id) {
 async function clearChecked() {
   const toRemove = items.filter((i) => i.checked);
   if (apiOnline) {
-    for (const i of toRemove) {
-      try {
-        await fetch(`/api/items/${i.id}`, { method: 'DELETE' });
-      } catch {
-        /* continue */
+    try {
+      for (const i of toRemove) {
+        const r = await fetch(`/api/items/${i.id}`, { method: 'DELETE' });
+        if (!r.ok) throw new Error('delete failed');
       }
+    } catch {
+      alert('Some items could not be removed. Refreshing the checklist.');
     }
+    await refreshFromServer();
+    return;
   }
   items = items.filter((i) => !i.checked);
   renderList();

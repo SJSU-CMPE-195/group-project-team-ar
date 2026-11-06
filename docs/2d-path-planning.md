@@ -1,5 +1,11 @@
 ## 2D Path Planning
 
+The Node checklist integration on `feature/path-planning-checklist` is documented
+in [Automatic checklist ordering](checklist-ordering.md), including setup, tests,
+fallback behavior, and the unchanged demo-map limitations. The navigation API
+described below belongs to the original planner branch; this integration adds
+ordering to the existing `GET /api/items` endpoint.
+
 Route a shopper through the items on their checklist, from the store entrance to each item's aisle and (optionally) to checkout, using a 2D grid map of the store.
 
 - **Store**: Target San Jose West
