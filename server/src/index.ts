@@ -3,6 +3,7 @@ import cors from 'cors';
 import express from 'express';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { orderChecklist } from './checklistOrdering.js';
 import {
   deleteItem,
   ensureSchema,
@@ -32,7 +33,7 @@ app.get('/api/health', async (_req, res) => {
 
 app.get('/api/items', async (_req, res) => {
   try {
-    res.json(await listItems());
+    res.json(orderChecklist(await listItems()));
   } catch (e) {
     res.status(500).json({ error: String(e) });
   }
