@@ -6,25 +6,60 @@ let nextId = 1;
 let apiOnline = false;
 
 const AISLES_BY_ITEM = {
-  banana: 'B9',
-  bottle: 'B68',
-  fork: 'E73',
-  scissors: 'A23',
-  'potted plant': 'E28',
-  keyboard: 'D36',
-  cup: 'E67',
-  microwave: 'D74',
+  'cup': 'E80',
+  'bottle': 'Q19',
+  'microwave': 'D74',
+  'potted plant': 'B5',
+  'keyboard': 'D36',
+  'backpack': 'P26',
+  'umbrella': 'UT50',
+  'handbag': 'AC50',
+  'tie': 'MN50',
+  'suitcase': 'D49',
+  'sports ball': 'Q21',
+  'baseball bat': 'Q21',
+  'baseball glove': 'Q21',
+  'tennis racket': 'Q19',
+  'wine glass': 'E66',
+  'fork': 'E73',
+  'knife': 'E60',
+  'spoon': 'E73',
+  'bowl': 'E80',
+  'banana': 'B49',
+  'apple': 'B50',
+  'sandwich': 'B43',
+  'orange': 'B49',
+  'broccoli': 'B57',
+  'carrot': 'B57',
+  'hot dog': 'B48',
+  'pizza': 'B42',
+  'donut': 'B31',
+  'cake': 'B39',
+  'chair': 'E83',
+  'tv': 'D69',
+  'laptop': 'D27',
+  'mouse': 'D36',
+  'remote': 'D69',
+  'toaster': 'D73',
+  'book': 'D48',
+  'clock': 'E83',
+  'vase': 'E10',
+  'scissors': 'A23',
+  'teddy bear': 'P24',
+  'hair drier': 'C20',
+  'toothbrush': 'C27',
 };
 
 function aisleForItem(name) {
-  return AISLES_BY_ITEM[name.trim().toLowerCase()] || null;
+  const key = name.trim().toLowerCase();
+  return Object.hasOwn(AISLES_BY_ITEM, key) ? AISLES_BY_ITEM[key] : null;
 }
 
 function serverRowToClient(row) {
   return {
     id: row.id,
     name: row.name,
-    aisle: row.aisle ?? aisleForItem(row.name),
+    aisle: aisleForItem(row.name) ?? row.aisle,
     checked: row.status === 'picked_up',
     detected: false,
   };
@@ -51,7 +86,7 @@ async function loadFromServer() {
 function loadLocalOnly() {
   items = JSON.parse(localStorage.getItem(LS_KEY) || '[]').map((item) => ({
     ...item,
-    aisle: item.aisle ?? aisleForItem(item.name),
+    aisle: aisleForItem(item.name) ?? item.aisle,
   }));
   nextId = parseInt(localStorage.getItem(LS_NEXT) || '1', 10);
 }

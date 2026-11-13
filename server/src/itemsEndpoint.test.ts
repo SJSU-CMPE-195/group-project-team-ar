@@ -10,7 +10,7 @@ test('GET /api/items passes database rows through ordering and keeps the array c
   const rows = [
     { id: 1, name: 'Microwave', aisle: 'D74', status: 'not_picked_up' as const },
     { id: 2, name: 'Fork', aisle: 'E73', status: 'not_picked_up' as const },
-    { id: 3, name: 'Banana', aisle: 'B9', status: 'picked_up' as const },
+    { id: 3, name: 'Banana', aisle: 'B49', status: 'picked_up' as const },
   ];
   let handler: (req: unknown, res: unknown) => Promise<void> = async () => assert.fail('route not registered');
   vm.runInNewContext(handlerSource, {

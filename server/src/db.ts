@@ -1,3 +1,4 @@
+import { aisleForItem, aisleMigrationSql, aisleMigrationParams } from './aisleMappings.js';
 import mysql from 'mysql2/promise';
 
 export type ItemStatus = 'not_picked_up' | 'picked_up';
@@ -8,21 +9,6 @@ export type GroceryRow = {
   aisle: string | null;
   status: ItemStatus;
 };
-
-const AISLES_BY_ITEM: Record<string, string> = {
-  banana: 'B9',
-  bottle: 'B68',
-  fork: 'E73',
-  scissors: 'A23',
-  'potted plant': 'E28',
-  keyboard: 'D36',
-  cup: 'E67',
-  microwave: 'D74',
-};
-
-function aisleForItem(name: string): string | null {
-  return AISLES_BY_ITEM[name.trim().toLowerCase()] ?? null;
-}
 
 const pool = mysql.createPool({
   host: process.env.MYSQL_HOST ?? '127.0.0.1',
@@ -112,4 +98,14 @@ export async function deleteItem(id: number): Promise<boolean> {
     [id]
   );
   return res.affectedRows > 0;
+}
+
+/** Update aisle only; preserve IDs, names, status and all other columns. */
+export async function migrateAisles(): Promise<number> {
+  const [result] = await pool.execute<mysql.ResultSetHeader>(aisleMigrationSql, aisleMigrationParams);
+  return result.affectedRows;
+}
+
+export async function closeDb(): Promise<void> {
+  await pool.end();
 }
