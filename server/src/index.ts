@@ -9,6 +9,7 @@ import {
   ensureSchema,
   insertItem,
   listItems,
+  migrateAisles,
   pingDb,
   type ItemStatus,
   updateItemStatus,
@@ -95,8 +96,9 @@ app.use(express.static(webRoot));
 async function main() {
   try {
     await ensureSchema();
+    await migrateAisles();
   } catch (e) {
-    console.error('\nCould not connect to MySQL or create tables.');
+    console.error('\nCould not connect to MySQL, create tables, or migrate aisle mappings.');
     console.error('1) Install MySQL Server and start the service.');
     console.error('2) Create database `aislevision` (run server/mysql/workbench_setup.sql in Workbench).');
     console.error('3) Copy server/.env.example to server/.env and set MYSQL_PASSWORD.\n');
